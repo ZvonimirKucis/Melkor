@@ -1,0 +1,40 @@
+{
+  "version": 2,
+  "exports": {
+    "Melkor-core-builder/1.0.0": {
+      "type": "project",
+      "framework": ".NETFramework,Version=v4.5.2",
+      "compile": {
+        "bin/Release/Melkor-core-builder.dll": {}
+      },
+      "runtime": {
+        "bin/Release/Melkor-core-builder.dll": {}
+      },
+      "contentFiles": {
+        "bin/Release/Melkor-core-builder.pdb": {
+          "buildAction": "None",
+          "codeLanguage": "any",
+          "copyToOutput": true
+        }
+      }
+    },
+    "Melkor-core-gitzipper/1.0.0": {
+      "type": "project",
+      "framework": ".NETFramework,Version=v4.5.2",
+      "compile": {
+        "bin/Release/Melkor-core-gitzipper.dll": {}
+      },
+      "runtime": {
+        "../packages/DotNetZip.1.10.1/lib/net20/DotNetZip.dll": {},
+        "bin/Release/Melkor-core-gitzipper.dll": {}
+      },
+      "contentFiles": {
+        "bin/Release/Melkor-core-gitzipper.pdb": {
+          "buildAction": "None",
+          "codeLanguage": "any",
+          "copyToOutput": true
+        }
+      }
+    }
+  }
+}

@@ -1,4 +1,4 @@
-﻿{
+{
   "userSecretsId": "aspnet-Melkor_core_web-360d709d-2930-41dd-a69d-4c9b04b612d8",
 
   "dependencies": {
@@ -58,7 +58,16 @@
   },
 
   "frameworks": {
-    "net452": { }
+    "net452": {
+      "dependencies": {
+        "Melkor-core-builder": {
+          "target": "project"
+        },
+        "Melkor-core-gitzipper": {
+          "target": "project"
+        }
+      }
+    }
   },
 
   "buildOptions": {

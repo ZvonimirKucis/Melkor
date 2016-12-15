@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using Melkor_core_web.Data;
 using Melkor_core_web.Models;
 using Melkor_core_web.Services;
+using Microsoft.AspNetCore.Hosting.Internal;
 
 namespace Melkor_core_web
 {
@@ -57,6 +58,8 @@ namespace Melkor_core_web
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -66,8 +69,9 @@ namespace Melkor_core_web
             loggerFactory.AddDebug();
 
             app.UseApplicationInsightsRequestTelemetry();
-
-            if (env.IsDevelopment())
+            //TODO change back
+            /*
+            if (!env.IsDevelopment()) 
             {
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
@@ -77,7 +81,11 @@ namespace Melkor_core_web
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-
+            */
+            app.UseDeveloperExceptionPage();
+            app.UseDatabaseErrorPage();
+            app.UseBrowserLink();
+            //////////
             app.UseApplicationInsightsExceptionTelemetry();
 
             app.UseStaticFiles();

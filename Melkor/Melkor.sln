@@ -12,6 +12,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Melkor-core-web", "src\Melkor-core-web\Melkor-core-web.xproj", "{8EA46964-EA98-4432-95D9-DB7925F5CDEA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Melkor-core-gitzipper", "Melkor-core-gitzipper\Melkor-core-gitzipper.csproj", "{5846D2DA-3B34-4414-A7DD-AD985F7008E2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Melkor-core-builder", "Melkor-core-builder\Melkor-core-builder.csproj", "{AE7EB30B-C3D6-4934-93D6-00A4D780DD7D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "melkor-unittests", "melkor-unittests\melkor-unittests.csproj", "{1FB38E5B-D282-4280-A9D2-D52B8E53A875}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "melkor-core-testrun", "melkor-core-testrun\melkor-core-testrun.csproj", "{5D706712-1609-437B-95D7-2EB57087A063}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,6 +30,22 @@ Global
 		{8EA46964-EA98-4432-95D9-DB7925F5CDEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8EA46964-EA98-4432-95D9-DB7925F5CDEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8EA46964-EA98-4432-95D9-DB7925F5CDEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5846D2DA-3B34-4414-A7DD-AD985F7008E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5846D2DA-3B34-4414-A7DD-AD985F7008E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5846D2DA-3B34-4414-A7DD-AD985F7008E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5846D2DA-3B34-4414-A7DD-AD985F7008E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE7EB30B-C3D6-4934-93D6-00A4D780DD7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE7EB30B-C3D6-4934-93D6-00A4D780DD7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE7EB30B-C3D6-4934-93D6-00A4D780DD7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE7EB30B-C3D6-4934-93D6-00A4D780DD7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FB38E5B-D282-4280-A9D2-D52B8E53A875}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FB38E5B-D282-4280-A9D2-D52B8E53A875}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FB38E5B-D282-4280-A9D2-D52B8E53A875}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FB38E5B-D282-4280-A9D2-D52B8E53A875}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D706712-1609-437B-95D7-2EB57087A063}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D706712-1609-437B-95D7-2EB57087A063}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D706712-1609-437B-95D7-2EB57087A063}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D706712-1609-437B-95D7-2EB57087A063}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
