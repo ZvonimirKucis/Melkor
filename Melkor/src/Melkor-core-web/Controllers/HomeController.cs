@@ -18,8 +18,10 @@ using Microsoft.AspNetCore.Authorization;
 namespace Melkor_core_web.Controllers
 {
     
+
     public class HomeController : Controller
     {
+        private string location = @"C:\Melkor"; // for Azure: @"D:\home\Melkor\"
         private readonly IHostingEnvironment _environment;
         private readonly UserManager<ApplicationUser> _userManager;
 
@@ -38,16 +40,17 @@ namespace Melkor_core_web.Controllers
         [Authorize]
         public async Task<IActionResult> About()
         {
-            string downloadLocation = @"D:\home\Melkor\";
+            string downloadLocation = location;
             string[] urls = new[] { "https://github.com/fspigel/RAUPJC-DZ2/", "https://github.com/ZvonimirKucis/2-domaca-zadaca" };
 
             ApplicationUser currentUser = await _userManager.GetUserAsync(HttpContext.User);
 
             GitZipper.CleanUp(downloadLocation);
+            
             foreach (var url in urls)
             {
-                GitZipper zip = new GitZipper(url, currentUser.GetHashCode().ToString());
-
+                GitZipper zip = new GitZipper(url, Guid.Parse(currentUser.Id).ToString());
+                
                 zip.GitDownload(downloadLocation);
                 zip.GitUnzip();
             }
@@ -60,7 +63,7 @@ namespace Melkor_core_web.Controllers
         public IActionResult Contact()
         {
             List<BuildItem> str = new List<BuildItem>();
-            string target = @"D:\home\Melkor\";
+            string target = location;
             if (!Directory.Exists(target)) throw new DirectoryNotFoundException();
             Builder builder = new Builder(target);
             string[] strin = builder.FindProjectFile(target);

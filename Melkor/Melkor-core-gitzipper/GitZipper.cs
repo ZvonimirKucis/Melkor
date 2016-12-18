@@ -24,8 +24,8 @@ namespace Melkor_core_gitzipper
 
         public void GitDownload(string directoryLocation)
         {
-            _directoryLocation = $@"{directoryLocation}{_userGuid}\";
-            _downloadFile = $"{directoryLocation}{_userGuid}master.zip";
+            _directoryLocation = $@"{directoryLocation}\{_userGuid}\";
+            _downloadFile = $@"{_directoryLocation}\{_userGuid}master.zip";
             
             Directory.CreateDirectory(_directoryLocation);
            
