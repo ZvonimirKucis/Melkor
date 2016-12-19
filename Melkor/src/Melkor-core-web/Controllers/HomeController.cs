@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore.Design.Internal;
 using BuildItem = Melkor_core_web.Models.BuildItem;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Configuration;
 
 namespace Melkor_core_web.Controllers
 {
@@ -21,14 +23,15 @@ namespace Melkor_core_web.Controllers
 
     public class HomeController : Controller
     {
-        private string location = @"C:\Melkor"; // for Azure: @"D:\home\Melkor\"
+        private string location;
         private readonly IHostingEnvironment _environment;
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public HomeController(IHostingEnvironment environment, UserManager<ApplicationUser> userManager)
+        public HomeController(IHostingEnvironment environment, UserManager<ApplicationUser> userManager, IConfigurationRoot configuration)
         {
             this._environment = environment;
             this._userManager = userManager;
+            this.location = configuration.GetSection("Environment")["Storage"];
         }
 
         public IActionResult Index()

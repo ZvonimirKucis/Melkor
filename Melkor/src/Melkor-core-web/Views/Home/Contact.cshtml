@@ -5,18 +5,23 @@
 <h2>@ViewData["Title"].</h2>
 <h3>@ViewData["Message"]</h3>
     
-    @foreach (BuildItem item in @Model)
-    {
-        <div class="panel panel-body">
-            <p>@item.Dir</p>
-            @if (item.Status == true.ToString())
-            {
-                <span class="panel-footer fa fa-check"></span>
-            }
-            else
-            {
-                <span class="panel-footer fa fa-exclamation "></span>
-            }<br />
-
-        </div>
+<div class="container-fluid">
+    <div class="row">
+        @foreach (BuildItem item in @Model)
+        {
+            <div class="btn-default panel-body col-md-4">
+                    
+                    <p>@item.Dir</p>
+                    <p >Build status :</p>
+                    @if (item.Status == true.ToString())
+                {
+                        <span class="panel-footer fa fa-check"></span>
+                    }
+                    else
+                    {
+                        <span class="panel-footer fa fa-exclamation "></span>
+                    }<br />
+                </div>
         }
+    </div>
+</div>

@@ -55,11 +55,11 @@ namespace Melkor_core_web
 
             services.AddMvc();
 
+            services.AddSingleton<IConfigurationRoot>(provider => Configuration);
+
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
-
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
