@@ -8,6 +8,13 @@
         "bin/Debug/Melkor-core-builder.dll": {}
       },
       "runtime": {
+        "../../../../../../../Program Files (x86)/MSBuild/14.0/Bin/Microsoft.Build.Conversion.Core.dll": {},
+        "../../../../../../../Program Files (x86)/MSBuild/14.0/Bin/Microsoft.Build.Engine.dll": {},
+        "../../../../../../../Program Files (x86)/MSBuild/14.0/Bin/Microsoft.Build.Framework.dll": {},
+        "../../../../../../../Program Files (x86)/MSBuild/14.0/Bin/Microsoft.Build.Tasks.CodeAnalysis.dll": {},
+        "../../../../../../../Program Files (x86)/MSBuild/14.0/Bin/Microsoft.Build.Tasks.Core.dll": {},
+        "../../../../../../../Program Files (x86)/MSBuild/14.0/Bin/Microsoft.Build.Utilities.Core.dll": {},
+        "../../../../../../../Program Files (x86)/MSBuild/14.0/Bin/Microsoft.Build.dll": {},
         "bin/Debug/Melkor-core-builder.dll": {}
       },
       "contentFiles": {

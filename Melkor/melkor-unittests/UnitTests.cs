@@ -19,13 +19,10 @@ namespace melkor_unittests
                 "https://github.com/ZvonimirKucis/2-domaca-zadaca",
                 "https://github.com/fspigel/RAUPJC-DZ2/",
                 "https://github.com/ib47885/DZ02",
-                "https://github.com/Jebansi33/DrugaDZ",
-                "https://github.com/nikolazinjo/RAUPJC-2DZ",
                 "https://github.com/tbozuric/RAUPJC-HW2",
                 "https://github.com/nbukovac/RAUPJC_2.HW",
                 "https://github.com/bernarda22/RAUPJC_DrugaDZ",
                 "https://github.com/KatarinaBlazic/RAUPJC-DZ2",
-                "https://github.com/dafta/RAUPJC-2DZ",
                 "https://github.com/donikv/dz2"
             };
 
@@ -38,25 +35,28 @@ namespace melkor_unittests
                 zip.GitUnzip();
             }
         }
-
-
+       
         [TestMethod]
-        public void BuilderTestBuildv2()
+        public void BuilderCS6()
         {
             var res = false;
+            float countPass = 0, countFail = 0;
             var target = @"C:\Melkor\";
             if (!Directory.Exists(target)) throw new DirectoryNotFoundException();
             var builder = new Builder(target);
             var strin = builder.FindProjectFile(target);
             foreach (var dir in strin)
             {
-                res = builder.Build3(dir);
+                res = builder.Build4(dir, true);
                 Console.WriteLine("Building " + res + " -> " + dir);
+                if (res) countPass++;
+                else countFail++;
             }
             GitZipper.CleanUp(target);
-            Assert.AreEqual(true, res);
+            Console.WriteLine($"Pass : {countPass} \t Fail : {countFail}");
+            Console.WriteLine($"Success rate : {(countPass/(countPass+countFail))*100} %");
         }
-
+        
 
         [TestMethod]
         public void TestRun()

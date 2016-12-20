@@ -60,9 +60,6 @@
   "frameworks": {
     "net452": {
       "dependencies": {
-        "Melkor-core-builder": {
-          "target": "project"
-        },
         "Melkor-core-gitzipper": {
           "target": "project"
         }
