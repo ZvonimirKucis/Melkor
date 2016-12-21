@@ -1,26 +1,16 @@
-﻿namespace Melkor_core_builder
+﻿using Microsoft.Build.Execution;
+
+namespace Melkor_core_builder
 {
     public class BuildItem
     {
-        private string dir;
-        private string status;
-
-        public BuildItem(string dir, string status)
+        public BuildItem(string dir, bool status)
         {
-            this.dir = dir;
-            this.status = status;
+            Dir = dir;
+            Status = status;
         }
 
-        public string Dir
-        {
-            get { return dir; }
-            set { dir = value; }
-        }
-
-        public string Status
-        {
-            get { return status; }
-            set { status = value; }
-        }
+        public string Dir { get; set; }
+        public bool Status { get; set; }
     }
 }

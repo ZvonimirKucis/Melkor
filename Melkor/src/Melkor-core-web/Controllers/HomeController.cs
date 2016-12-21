@@ -13,7 +13,6 @@ using Melkor_core_web.Models;
 using Microsoft.AspNetCore.Hosting.Internal;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore.Design.Internal;
-using BuildItem = Melkor_core_web.Models.BuildItem;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Configuration;
 
@@ -23,7 +22,7 @@ namespace Melkor_core_web.Controllers
 
     public class HomeController : Controller
     {
-        private string location;
+        private readonly string _location;
         private readonly IHostingEnvironment _environment;
         private readonly UserManager<ApplicationUser> _userManager;
 
@@ -31,7 +30,7 @@ namespace Melkor_core_web.Controllers
         {
             this._environment = environment;
             this._userManager = userManager;
-            this.location = configuration.GetSection("Environment")["Storage"];
+            this._location = configuration.GetSection("Environment")["Storage"];
         }
 
         public IActionResult Index()
@@ -41,9 +40,9 @@ namespace Melkor_core_web.Controllers
         }
 
         [Authorize]
-        public async Task<IActionResult> About()
+        public async Task<IActionResult> GitDownload()
         {
-            string downloadLocation = location;
+            string downloadLocation = _location;
             string[] urls = new[] { "https://github.com/fspigel/RAUPJC-DZ2/", "https://github.com/ZvonimirKucis/2-domaca-zadaca" };
 
             ApplicationUser currentUser = await _userManager.GetUserAsync(HttpContext.User);
@@ -63,21 +62,17 @@ namespace Melkor_core_web.Controllers
         }
 
         [Authorize]
-        public IActionResult Contact()
+        public IActionResult Build()
         {
-            List<BuildItem> str = new List<BuildItem>();
-            string target = location;
+            string target = _location;
             if (!Directory.Exists(target)) throw new DirectoryNotFoundException();
             Builder builder = new Builder(target);
-            string[] strin = builder.FindProjectFile(target);
-            foreach (var dir in strin)
-            {
-                str.Add(item: new BuildItem(dir, builder.Build3(dir) + ""));
-            }
 
+            var resultBuildItems = builder.Build();
+            
             ViewData["Message"] = "Build";
 
-            return View(str);
+            return View(resultBuildItems);
         }
 
         public IActionResult Error()

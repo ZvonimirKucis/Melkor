@@ -26,42 +26,26 @@ namespace Melkor_core_builder
             _targetPath = targetPath;
         }
 
-        public bool Build3(string path)
+        public IEnumerable<BuildItem> Build()
         {
-            var result = false;
-            try
+            var items = new List<BuildItem>();
+            var allProjectPaths = FindProjectFile(_targetPath);
+            foreach (var dir in allProjectPaths)
             {
-                if (path == null) throw new NullReferenceException();
-                if (!path.EndsWith(".csproj")) throw new InvalidProjectFileException();
+                var item = BuildProject(dir, false);
+                items.Add(item);
 
-                var projectFilePath = path;
-
-                var pc = new ProjectCollection();
-
-                var globalProperty = new Dictionary<string, string>();
-                // globalProperty.Add("OutputPath", Directory.GetCurrentDirectory() + "\\build\\bin\\Release");
-
-                var bp = new BuildParameters(pc);
-                var buildRequest = new BuildRequestData(projectFilePath, globalProperty, null,
-                    new[] {"Build"}, null);
-                var buildResult = BuildManager.DefaultBuildManager.Build(bp, buildRequest);
-                if (buildResult.OverallResult == BuildResultCode.Success)
-                    result = true;
+                Console.WriteLine("Building " + item.Status.ToString() + " -> " + item.Dir);
             }
-            catch (Exception e)
-            {
-                Console.WriteLine("Build Failed: " + e);
-            }
-            return result;
+            return items;
         }
-
-        public bool Build4(string path, bool debug)
+        
+        private static BuildItem BuildProject(string path, bool debug)
         {
-            var result = false;
+            var logger = new ConsoleLogger(LoggerVerbosity.Minimal);
+
             try
             {
-                var logger = new ConsoleLogger(LoggerVerbosity.Minimal);
-
                 if (path == null) throw new NullReferenceException();
                 if (!path.EndsWith(".csproj")) throw new InvalidProjectFileException();
 
@@ -71,7 +55,7 @@ namespace Melkor_core_builder
 
                 var globalProperty = new Dictionary<string, string>();
                 // globalProperty.Add("OutputPath", Directory.GetCurrentDirectory() + "\\build\\bin\\Release");
-                BuildParameters bp = null;
+                BuildParameters bp;
                 if (debug)
                     bp = new BuildParameters(pc)
                     {
@@ -90,45 +74,21 @@ namespace Melkor_core_builder
 
                 var buildResult = BuildManager.DefaultBuildManager.Build(bp, buildRequest);
 
-                if (buildResult.OverallResult == BuildResultCode.Success)
-                    result = true;
+                return new BuildItem(dir: path, status: buildResult.OverallResult == BuildResultCode.Success);
             }
             catch (Exception e)
             {
                 Console.WriteLine("Build Failed: " + e);
             }
-            return result;
+            return null;
         }
 
-        public string[] FindProjectFile (string path)
+        public string[] FindProjectFile(string path)
         {
             var files = Directory.GetFiles(path, "*.csproj", SearchOption.AllDirectories);
             return files;
         }
 
-        /// </summary>
-        /// <p> - Extension -> ".dll" </p>
-        /// <p> - Filename -> "Zad6" </p>
-        /// <p>Metadata :</p>
-
-        /// <summary>
-        /*  public void GetTargetData()
-          {
-              if (_results.ResultsByTarget != null)
-              {
-                  var targetData = _results?.ResultsByTarget;
-                  foreach (var target in targetData)
-                  {
-                      Console.WriteLine(target.Key + " : ");
-                      foreach (var item in target.Value.Items)
-                      {
-                          foreach (var item2 in item.MetadataNames)
-                          {
-                              Console.WriteLine(item2.ToString() + " -> " + item.GetMetadata(item2.ToString()));
-                          }
-                      }
-                  }
-              }
-          }*/
     }
+
 }

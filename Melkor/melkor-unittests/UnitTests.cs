@@ -3,6 +3,7 @@ using System.IO;
 using melkor_core_testrun;
 using Melkor_core_builder;
 using Melkor_core_gitzipper;
+using Microsoft.Build.Execution;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace melkor_unittests
@@ -17,6 +18,7 @@ namespace melkor_unittests
             string[] urls =
             {
                 "https://github.com/ZvonimirKucis/2-domaca-zadaca",
+                "https://github.com/m3talen/RAUPJC-DZ2/",
                 "https://github.com/fspigel/RAUPJC-DZ2/",
                 "https://github.com/ib47885/DZ02",
                 "https://github.com/tbozuric/RAUPJC-HW2",
@@ -37,22 +39,19 @@ namespace melkor_unittests
         }
        
         [TestMethod]
-        public void BuilderCS6()
+        public void BuilderCs6()
         {
-            var res = false;
             float countPass = 0, countFail = 0;
             var target = @"C:\Melkor\";
             if (!Directory.Exists(target)) throw new DirectoryNotFoundException();
             var builder = new Builder(target);
-            var strin = builder.FindProjectFile(target);
-            foreach (var dir in strin)
+            
+            var res = builder.Build();
+            foreach (var item in res)
             {
-                res = builder.Build4(dir, true);
-                Console.WriteLine("Building " + res + " -> " + dir);
-                if (res) countPass++;
+                if (item.Status) countPass++;
                 else countFail++;
             }
-            GitZipper.CleanUp(target);
             Console.WriteLine($"Pass : {countPass} \t Fail : {countFail}");
             Console.WriteLine($"Success rate : {(countPass/(countPass+countFail))*100} %");
         }

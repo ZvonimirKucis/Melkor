@@ -1,4 +1,6 @@
-﻿@model List<BuildItem>
+﻿@using System.Threading.Tasks
+@using Melkor_core_builder
+@model IEnumerable<Melkor_core_builder.BuildItem>
 @{
     ViewData["Title"] = "Contact";
 }
@@ -13,7 +15,7 @@
                     
                     <p>@item.Dir</p>
                     <p >Build status :</p>
-                    @if (item.Status == true.ToString())
+                    @if (item.Status)
                 {
                         <span class="panel-footer fa fa-check"></span>
                     }
