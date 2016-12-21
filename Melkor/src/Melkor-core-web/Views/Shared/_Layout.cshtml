@@ -7,7 +7,7 @@
 
     <environment names="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/lib/bootswatch/superhero-melkor/bootstrap.css" />
+        <link rel="stylesheet" href="~/lib/bootswatch/darkly/bootstrap.css" />
         <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.css" />
         <link rel="stylesheet" href="~/css/site.css" />
     </environment>
@@ -16,14 +16,14 @@
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
 
-        <link rel="stylesheet" href="~/lib/bootswatch/superhero-melkor/bootstrap.css" />
+        <link rel="stylesheet" href="~/lib/bootswatch/darkly/bootstrap.min.css" />
         <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
     @Html.ApplicationInsightsJavaScript(TelemetryConfiguration)
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -46,10 +46,7 @@
     </div>
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; 2016 - Melkor core team</p>
-        </footer>
+        
     </div>
 
     <environment names="Development">
