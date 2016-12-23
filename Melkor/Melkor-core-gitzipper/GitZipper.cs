@@ -39,8 +39,21 @@ namespace Melkor_core_gitzipper
 
         public static void CleanUp(string directoryLocation)
         {
-            if (Directory.Exists(directoryLocation))
-                Directory.Delete(directoryLocation, true);
+            string[] files = Directory.GetFiles(directoryLocation);
+            string[] dirs = Directory.GetDirectories(directoryLocation);
+
+            foreach (string file in files)
+            {
+                File.SetAttributes(file, FileAttributes.Normal);
+                File.Delete(file);
+            }
+
+            foreach (string dir in dirs)
+            {
+                CleanUp(dir);
+            }
+
+            Directory.Delete(directoryLocation, false);
         }
 
         /// <summary>

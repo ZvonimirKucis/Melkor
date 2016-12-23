@@ -40,25 +40,25 @@ namespace Melkor_core_web.Controllers
         }
 
         [Authorize]
-        public async Task<IActionResult> GitDownload()
+        [HttpPost]
+        public async Task<IActionResult> GitDownload(GitLinkModel link)
         {
-            string downloadLocation = _location;
-            string[] urls = new[] { "https://github.com/fspigel/RAUPJC-DZ2/", "https://github.com/ZvonimirKucis/2-domaca-zadaca" };
+            if (!link.URL.Contains("github.com")) return View("Index");
 
+            string downloadLocation = _location;
+            
             ApplicationUser currentUser = await _userManager.GetUserAsync(HttpContext.User);
 
             GitZipper.CleanUp(downloadLocation);
             
-            foreach (var url in urls)
-            {
-                GitZipper zip = new GitZipper(url, Guid.Parse(currentUser.Id).ToString());
+            GitZipper zip = new GitZipper(link.URL, Guid.Parse(currentUser.Id).ToString());
                 
-                zip.GitDownload(downloadLocation);
-                zip.GitUnzip();
-            }
-            ViewData["Message"] = downloadLocation; 
+            zip.GitDownload(downloadLocation);
+            zip.GitUnzip();
 
-            return View();
+            ViewData["Message"] = link.URL; 
+
+            return View("Build");
         }
 
         [Authorize]
