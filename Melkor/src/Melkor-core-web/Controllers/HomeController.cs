@@ -56,9 +56,9 @@ namespace Melkor_core_web.Controllers
             zip.GitDownload(downloadLocation);
             zip.GitUnzip();
 
-            ViewData["Message"] = link.URL; 
+            ViewData["Message"] = link.URL;
 
-            return View("Build");
+            return RedirectToAction("Build");
         }
 
         [Authorize]
@@ -70,7 +70,7 @@ namespace Melkor_core_web.Controllers
 
             var resultBuildItems = builder.Build();
             
-            ViewData["Message"] = "Build";
+            ViewData["Message"] = "Build complete";
 
             return View(resultBuildItems);
         }

@@ -12,19 +12,7 @@
     <div class="row">
         @foreach (BuildItem item in @Model)
         {
-            <div class="btn-default panel-body col-md-4">
-                    
-                    <p>@item.Dir</p>
-                    <p >Build status :</p>
-                    @if (item.Status)
-                {
-                        <span class="panel-footer fa fa-check"></span>
-                    }
-                    else
-                    {
-                        <span class="panel-footer fa fa-exclamation "></span>
-                    }<br />
-                </div>
+           Html.RenderPartial("BuildItemPartialView", item);
         }
     </div>
 </div>
