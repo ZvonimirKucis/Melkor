@@ -1,14 +1,21 @@
 ﻿@model Melkor_core_builder.BuildItem
-<div class="btn-default panel-body col-md-4">
+<div class="btn-default panel panel-body col-md-12">
+    
+    <div class="col-xs-1 text-left">
 
-    <p>@Model.Dir</p>
-    <p>Build status :</p>
-    @if (Model.Status)
-    {
-        <span class="panel-footer fa fa-check"></span>
-    }
-    else
-    {
-        <span class="panel-footer fa fa-exclamation "></span>
-    }<br />
+        @if (Model.Status)
+        {
+            <span class="fa fa-check"></span>
+        }
+        else
+        {
+            <span class="fa fa-exclamation"></span>
+        }
+    </div>
+
+    <div class="col-xs-11">
+        @Model.Name
+    </div>
+
+    
 </div>

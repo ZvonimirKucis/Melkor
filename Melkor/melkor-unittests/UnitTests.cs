@@ -15,19 +15,22 @@ namespace melkor_unittests
         public void GitDownloadTest()
         {
             var downloadLocation = @"C:\Melkor\";
+            /* string[] urls =
+             {
+                 "https://github.com/ZvonimirKucis/2-domaca-zadaca",
+                 "https://github.com/m3talen/RAUPJC-DZ2/",
+                 "https://github.com/fspigel/RAUPJC-DZ2/",
+                 "https://github.com/ib47885/DZ02",
+                 "https://github.com/tbozuric/RAUPJC-HW2",
+                 "https://github.com/nbukovac/RAUPJC_2.HW",
+                 "https://github.com/bernarda22/RAUPJC_DrugaDZ",
+                 "https://github.com/KatarinaBlazic/RAUPJC-DZ2",
+                 "https://github.com/donikv/dz2"
+             };*/
             string[] urls =
             {
-                "https://github.com/ZvonimirKucis/2-domaca-zadaca",
-                "https://github.com/m3talen/RAUPJC-DZ2/",
-                "https://github.com/fspigel/RAUPJC-DZ2/",
-                "https://github.com/ib47885/DZ02",
-                "https://github.com/tbozuric/RAUPJC-HW2",
-                "https://github.com/nbukovac/RAUPJC_2.HW",
-                "https://github.com/bernarda22/RAUPJC_DrugaDZ",
-                "https://github.com/KatarinaBlazic/RAUPJC-DZ2",
-                "https://github.com/donikv/dz2"
-            };
-
+                "https://github.com/fspigel/RAUPJC-DZ2/"
+            }; 
             GitZipper.CleanUp(downloadLocation);
             foreach (var url in urls)
             {

@@ -71,10 +71,10 @@ namespace Melkor_core_builder
                     };
 
                 var buildRequest = new BuildRequestData(projectFilePath, globalProperty, null, new[] {"Build"}, null);
-
+                
                 var buildResult = BuildManager.DefaultBuildManager.Build(bp, buildRequest);
 
-                return new BuildItem(dir: path, status: buildResult.OverallResult == BuildResultCode.Success);
+                return new BuildItem(name: buildResult.ResultsByTarget["Build"].Items[0].GetMetadata("Filename"), dir: path, status: buildResult.OverallResult == BuildResultCode.Success);
             }
             catch (Exception e)
             {
@@ -89,6 +89,24 @@ namespace Melkor_core_builder
             return files;
         }
 
+         public static void getTargetName(BuildResult results)
+         {
+             if (results.ResultsByTarget != null)
+             {
+                 var targetData = results?.ResultsByTarget;
+                 foreach (var target in targetData)
+                 {
+                     Console.WriteLine(target.Key + " : ");
+                     foreach (var item in target.Value.Items)
+                     {
+                         foreach (var item2 in item.MetadataNames)
+                         {
+                             Console.WriteLine(item2.ToString() + " -> " + item.GetMetadata("Filename"));
+                         }
+                     }
+                 }
+             }
+         }
     }
 
 }
