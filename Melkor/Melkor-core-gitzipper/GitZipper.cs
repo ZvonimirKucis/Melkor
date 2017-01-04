@@ -36,7 +36,7 @@ namespace Melkor_core_gitzipper
                 client.DownloadFile(new Uri(downloadLink), _downloadFile);
             }
         }
-
+        
         public static void CleanUp(string directoryLocation)
         {
             string[] files = Directory.GetFiles(directoryLocation);

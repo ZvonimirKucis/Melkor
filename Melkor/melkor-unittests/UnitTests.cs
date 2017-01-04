@@ -49,7 +49,7 @@ namespace melkor_unittests
             if (!Directory.Exists(target)) throw new DirectoryNotFoundException();
             var builder = new Builder(target);
             
-            var res = builder.Build();
+            var res = builder.Build(target);
             foreach (var item in res)
             {
                 if (item.Status) countPass++;

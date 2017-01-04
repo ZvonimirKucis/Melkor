@@ -13,17 +13,21 @@ namespace melkor_core_testrun
     /// </summary>
     public class TesterH2T1
     {
-        private readonly Assembly _asm;
-        private readonly string _repoTypeName;
-        private readonly string _itemTypeName;
+        private readonly Type _repoType;
+        private readonly Type _itemType;
 
         public TesterH2T1(string DLLPath)
         {
-            _asm = Assembly.LoadFrom(DLLPath);
-            _repoTypeName = _asm.GetTypes().Where(x => x.ToString().ToLower().Contains(".todorepository"))
+            var asm = Assembly.LoadFrom(DLLPath);
+            var repoTypeName = asm.GetTypes().Where(x => x.ToString().ToLower().Contains(".todorepository"))
                 .Select(x => x.ToString()).FirstOrDefault();
-            _itemTypeName = _asm.GetTypes().Where(x => x.ToString().ToLower().Contains(".todoitem"))
+            var itemTypeName = asm.GetTypes().Where(x => x.ToString().ToLower().Contains(".todoitem"))
                 .Select(x => x.ToString()).FirstOrDefault();
+            _repoType = asm.GetType(repoTypeName);
+            _itemType = asm.GetType(itemTypeName);
+            asm = null;
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
         }
 
         public bool RunTest()
@@ -35,13 +39,12 @@ namespace melkor_core_testrun
         {
             object[] classConstructorArgs = {null};
            
-            Type repo = _asm.GetType(_repoTypeName);
-            dynamic repoInstance = Activator.CreateInstance(repo, classConstructorArgs);
+            dynamic repoInstance = Activator.CreateInstance(_repoType, classConstructorArgs);
             try
             {
                 repoInstance.Add(null);
             }
-            catch (ArgumentNullException exception)
+            catch (ArgumentNullException)
             {
                 return true;
             }
@@ -52,11 +55,9 @@ namespace melkor_core_testrun
         {
             object[] classConstructorArgs = { null };
             object[] constArgs = { "Test" };
-
-            Type item = _asm.GetType(_itemTypeName);
-            Type repo = _asm.GetType(_repoTypeName);
-            dynamic itemInstance = Activator.CreateInstance(item, constArgs);
-            dynamic repoInstance = Activator.CreateInstance(repo, classConstructorArgs);
+            
+            dynamic itemInstance = Activator.CreateInstance(_itemType, constArgs);
+            dynamic repoInstance = Activator.CreateInstance(_repoType, classConstructorArgs);
             repoInstance.Add(itemInstance);
             if (repoInstance.GetAll().Count == 1) return true;
             return false;
