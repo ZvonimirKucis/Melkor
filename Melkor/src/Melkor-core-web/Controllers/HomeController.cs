@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using melkor_core_testrun;
 using Melkor_core_builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -71,9 +73,16 @@ namespace Melkor_core_web.Controllers
             if (!Directory.Exists(target)) throw new DirectoryNotFoundException();
             Builder builder = new Builder(target);
 
-            var resultBuildItems = builder.Build(_location + Guid.Parse(currentUser.Id).ToString() + @"\output");
+            var resultBuildItems = builder.Build(_location + @"\" + Guid.Parse(currentUser.Id).ToString() + @"\output");
             
             ViewData["Message"] = "Build complete at " + _location + @"\" + Guid.Parse(currentUser.Id).ToString() + @"\output";
+
+            // TESTS RUNNING
+
+            TesterH2T1 tester = new TesterH2T1(resultBuildItems.First(s => Regex.IsMatch(s.Name, "1", RegexOptions.IgnoreCase)).Dir);
+            resultBuildItems.Add(item: new BuildItem("Zad1 test", tester.RunTest()));
+            
+            //
 
             return View(resultBuildItems);
         }

@@ -26,7 +26,7 @@ namespace Melkor_core_builder
             _targetPath = targetPath;
         }
 
-        public IEnumerable<BuildItem> Build(string saveLocation)
+        public List<BuildItem> Build(string saveLocation)
         {
             var items = new List<BuildItem>();
             var allProjectPaths = FindProjectFile(_targetPath);
@@ -83,8 +83,10 @@ namespace Melkor_core_builder
                 
                 var buildResult = BuildManager.DefaultBuildManager.Build(bp, buildRequest);
 
-                var item = new BuildItem(name: buildResult.ResultsByTarget["Build"].Items[0].GetMetadata("Filename"), dir: path, status: buildResult.OverallResult == BuildResultCode.Success);
-   
+                var item = new BuildItem(name: buildResult.ResultsByTarget["Build"].Items[0].GetMetadata("Filename"), 
+                                            dir: buildResult.ResultsByTarget["Build"].Items[0].GetMetadata("FullPath"), 
+                                            status: buildResult.OverallResult == BuildResultCode.Success);
+                
                 return item;
             }
             catch (Exception e)
@@ -112,7 +114,7 @@ namespace Melkor_core_builder
                      {
                          foreach (var item2 in item.MetadataNames)
                          {
-                             Console.WriteLine(item2.ToString() + " -> " + item.GetMetadata("Filename"));
+                             Console.WriteLine(item2.ToString() + " -> " + item.GetMetadata(item2.ToString()));
                          }
                      }
                  }

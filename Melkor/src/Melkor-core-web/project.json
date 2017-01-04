@@ -65,6 +65,9 @@
         },
         "Melkor-core-gitzipper": {
           "target": "project"
+        },
+        "melkor-core-testrun": {
+          "target": "project"
         }
       }
     }
