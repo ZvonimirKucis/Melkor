@@ -29,7 +29,7 @@ namespace melkor_unittests
              };*/
             string[] urls =
             {
-                "https://github.com/fspigel/RAUPJC-DZ2/"
+                "https://github.com/M3talen/RAUPJC-DZ2"
             }; 
             GitZipper.CleanUp(downloadLocation);
             foreach (var url in urls)
@@ -49,7 +49,8 @@ namespace melkor_unittests
             if (!Directory.Exists(target)) throw new DirectoryNotFoundException();
             var builder = new Builder(target);
             
-            var res = builder.Build();
+            var res = builder.Build(target + "output");
+
             foreach (var item in res)
             {
                 if (item.Status) countPass++;

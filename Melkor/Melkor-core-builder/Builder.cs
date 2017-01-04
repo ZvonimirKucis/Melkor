@@ -26,21 +26,29 @@ namespace Melkor_core_builder
             _targetPath = targetPath;
         }
 
-        public IEnumerable<BuildItem> Build()
+        public IEnumerable<BuildItem> Build(string saveLocation)
         {
             var items = new List<BuildItem>();
             var allProjectPaths = FindProjectFile(_targetPath);
             foreach (var dir in allProjectPaths)
             {
-                var item = BuildProject(dir, false);
-                items.Add(item);
+                try
+                {
+                    Console.WriteLine("Found : " + dir);
+                    var item = BuildProject(dir, saveLocation, false);
+                    items.Add(item);
 
-                Console.WriteLine("Building " + item.Status.ToString() + " -> " + item.Dir);
+                    Console.WriteLine("Building " + item.Status.ToString() + " -> " + item.Name);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.StackTrace);
+                }
             }
             return items;
         }
         
-        private static BuildItem BuildProject(string path, bool debug)
+        private static BuildItem BuildProject(string path, string savePath, bool debug)
         {
             var logger = new ConsoleLogger(LoggerVerbosity.Minimal);
 
@@ -54,7 +62,8 @@ namespace Melkor_core_builder
                 var pc = new ProjectCollection();
 
                 var globalProperty = new Dictionary<string, string>();
-                // globalProperty.Add("OutputPath", Directory.GetCurrentDirectory() + "\\build\\bin\\Release");
+                
+                globalProperty.Add("OutputPath", savePath);
                 BuildParameters bp;
                 if (debug)
                     bp = new BuildParameters(pc)
@@ -74,13 +83,15 @@ namespace Melkor_core_builder
                 
                 var buildResult = BuildManager.DefaultBuildManager.Build(bp, buildRequest);
 
-                return new BuildItem(name: buildResult.ResultsByTarget["Build"].Items[0].GetMetadata("Filename"), dir: path, status: buildResult.OverallResult == BuildResultCode.Success);
+                var item = new BuildItem(name: buildResult.ResultsByTarget["Build"].Items[0].GetMetadata("Filename"), dir: path, status: buildResult.OverallResult == BuildResultCode.Success);
+   
+                return item;
             }
             catch (Exception e)
             {
                 Console.WriteLine("Build Failed: " + e);
             }
-            return null;
+            return new BuildItem("BUILD FAILED ON ITEM", path, false);
         }
 
         public string[] FindProjectFile(string path)

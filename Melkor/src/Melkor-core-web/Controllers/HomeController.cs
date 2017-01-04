@@ -62,15 +62,18 @@ namespace Melkor_core_web.Controllers
         }
 
         [Authorize]
-        public IActionResult Build()
+        public async Task<IActionResult> Build()
         {
             string target = _location;
+
+            ApplicationUser currentUser = await _userManager.GetUserAsync(HttpContext.User);
+
             if (!Directory.Exists(target)) throw new DirectoryNotFoundException();
             Builder builder = new Builder(target);
 
-            var resultBuildItems = builder.Build();
+            var resultBuildItems = builder.Build(_location + Guid.Parse(currentUser.Id).ToString() + @"\output");
             
-            ViewData["Message"] = "Build complete";
+            ViewData["Message"] = "Build complete at " + _location + @"\" + Guid.Parse(currentUser.Id).ToString() + @"\output";
 
             return View(resultBuildItems);
         }
