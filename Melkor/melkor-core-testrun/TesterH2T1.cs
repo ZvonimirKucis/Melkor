@@ -25,9 +25,11 @@ namespace melkor_core_testrun
                 .Select(x => x.ToString()).FirstOrDefault();
             _repoType = asm.GetType(repoTypeName);
             _itemType = asm.GetType(itemTypeName);
-            asm = null;
-            GC.Collect();
-            GC.WaitForPendingFinalizers();
+        }
+
+        ~TesterH2T1()
+        {
+            System.Console.WriteLine("DESTRUCTED");
         }
 
         public bool RunTest()

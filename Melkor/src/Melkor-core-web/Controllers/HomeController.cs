@@ -79,7 +79,7 @@ namespace Melkor_core_web.Controllers
 
             // TESTS RUNNING
 
-            TesterH2T1 tester = new TesterH2T1(resultBuildItems.First(s => Regex.IsMatch(s.Name, "1", RegexOptions.IgnoreCase)).Dir);
+            TesterH2T1 tester = new TesterH2T1(_location + @"\" + Guid.Parse(currentUser.Id).ToString() + @"\output\zad1.dll");
             resultBuildItems.Add(item: new BuildItem("Zad1 test", tester.RunTest()));
             
             //

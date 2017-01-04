@@ -1,7 +1,7 @@
-﻿using Ionic.Zip;
-using System;
+﻿using System;
 using System.IO;
 using System.Net;
+using Ionic.Zip;
 
 namespace Melkor_core_gitzipper
 {
@@ -12,64 +12,66 @@ namespace Melkor_core_gitzipper
     {
         private readonly string _extension = "/archive/master.zip";
         private readonly string _url;
+        private readonly string _userGuid;
         private string _directoryLocation;
         private string _downloadFile;
-        private readonly string _userGuid;
 
         public GitZipper(string url, string userGuid)
         {
-            this._url = url;
-            this._userGuid = userGuid;
+            _url = url;
+            _userGuid = userGuid;
+        }
+
+        ~GitZipper()
+        {
+            Console.WriteLine("DESTT");
         }
 
         public void GitDownload(string directoryLocation)
         {
             _directoryLocation = $@"{directoryLocation}\{_userGuid}\";
             _downloadFile = $@"{_directoryLocation}\{_userGuid}master.zip";
-            
+
             Directory.CreateDirectory(_directoryLocation);
-           
-            string downloadLink = _url + _extension;
-            using (WebClient client = new WebClient())
+
+            var downloadLink = _url + _extension;
+            using (var client = new WebClient())
             {
                 Console.WriteLine($"Downloading {downloadLink}");
                 client.DownloadFile(new Uri(downloadLink), _downloadFile);
             }
         }
-        
+
         public static void CleanUp(string directoryLocation)
         {
-            string[] files = Directory.GetFiles(directoryLocation);
-            string[] dirs = Directory.GetDirectories(directoryLocation);
+            var files = Directory.GetFiles(directoryLocation);
+            var dirs = Directory.GetDirectories(directoryLocation);
 
-            foreach (string file in files)
+            foreach (var file in files)
             {
                 File.SetAttributes(file, FileAttributes.Normal);
                 File.Delete(file);
             }
 
-            foreach (string dir in dirs)
-            {
+            foreach (var dir in dirs)
                 CleanUp(dir);
-            }
 
-            Directory.Delete(directoryLocation, false);
+            Directory.Delete(directoryLocation);
         }
 
         /// <summary>
-        /// <p>Unzips the downloaded zip</p>
-        /// Edited (14.12.2016) - @M3talen : Azure support.
+        ///     <p>Unzips the downloaded zip</p>
+        ///     Edited (14.12.2016) - @M3talen : Azure support.
         /// </summary>
         public void GitUnzip()
         {
             Console.WriteLine($"Unziping {_downloadFile} to {_directoryLocation}");
-            using (ZipFile zip = ZipFile.Read(_downloadFile))
+            using (var zip = ZipFile.Read(_downloadFile))
             {
                 zip.ExtractAll(_directoryLocation, ExtractExistingFileAction.OverwriteSilently);
             }
 
             File.Delete(_downloadFile);
         }
-
     }
 }

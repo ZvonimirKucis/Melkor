@@ -5,7 +5,7 @@
       "type": "project",
       "framework": ".NETFramework,Version=v4.5.2",
       "compile": {
-        "bin/Release/Melkor-core-builder.dll": {}
+        "bin/Debug/Melkor-core-builder.dll": {}
       },
       "runtime": {
         "../../../../../../../Program Files (x86)/MSBuild/14.0/Bin/Microsoft.Build.Conversion.Core.dll": {},
@@ -15,10 +15,10 @@
         "../../../../../../../Program Files (x86)/MSBuild/14.0/Bin/Microsoft.Build.Tasks.Core.dll": {},
         "../../../../../../../Program Files (x86)/MSBuild/14.0/Bin/Microsoft.Build.Utilities.Core.dll": {},
         "../../../../../../../Program Files (x86)/MSBuild/14.0/Bin/Microsoft.Build.dll": {},
-        "bin/Release/Melkor-core-builder.dll": {}
+        "bin/Debug/Melkor-core-builder.dll": {}
       },
       "contentFiles": {
-        "bin/Release/Melkor-core-builder.pdb": {
+        "bin/Debug/Melkor-core-builder.pdb": {
           "buildAction": "None",
           "codeLanguage": "any",
           "copyToOutput": true
@@ -29,14 +29,14 @@
       "type": "project",
       "framework": ".NETFramework,Version=v4.5.2",
       "compile": {
-        "bin/Release/Melkor-core-gitzipper.dll": {}
+        "bin/Debug/Melkor-core-gitzipper.dll": {}
       },
       "runtime": {
         "../packages/DotNetZip.1.10.1/lib/net20/DotNetZip.dll": {},
-        "bin/Release/Melkor-core-gitzipper.dll": {}
+        "bin/Debug/Melkor-core-gitzipper.dll": {}
       },
       "contentFiles": {
-        "bin/Release/Melkor-core-gitzipper.pdb": {
+        "bin/Debug/Melkor-core-gitzipper.pdb": {
           "buildAction": "None",
           "codeLanguage": "any",
           "copyToOutput": true
@@ -47,13 +47,13 @@
       "type": "project",
       "framework": ".NETFramework,Version=v4.5.2",
       "compile": {
-        "bin/Release/melkor-core-testrun.dll": {}
+        "bin/Debug/melkor-core-testrun.dll": {}
       },
       "runtime": {
-        "bin/Release/melkor-core-testrun.dll": {}
+        "bin/Debug/melkor-core-testrun.dll": {}
       },
       "contentFiles": {
-        "bin/Release/melkor-core-testrun.pdb": {
+        "bin/Debug/melkor-core-testrun.pdb": {
           "buildAction": "None",
           "codeLanguage": "any",
           "copyToOutput": true

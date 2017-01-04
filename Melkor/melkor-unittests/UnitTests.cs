@@ -15,7 +15,7 @@ namespace melkor_unittests
         public void GitDownloadTest()
         {
             var downloadLocation = @"C:\Melkor\";
-             string[] urls =
+            /* string[] urls =
              {
                  "https://github.com/ZvonimirKucis/2-domaca-zadaca",
                  "https://github.com/m3talen/RAUPJC-DZ2/",
@@ -26,11 +26,11 @@ namespace melkor_unittests
                  "https://github.com/bernarda22/RAUPJC_DrugaDZ",
                  "https://github.com/KatarinaBlazic/RAUPJC-DZ2",
                  "https://github.com/donikv/dz2"
-             };
-           /* string[] urls =
+             };*/
+            string[] urls =
             {
                 "https://github.com/fspigel/RAUPJC-DZ2/"
-            }; */
+            }; 
             GitZipper.CleanUp(downloadLocation);
             foreach (var url in urls)
             {
@@ -65,12 +65,13 @@ namespace melkor_unittests
         {
             
             TesterH2T1 tester = new TesterH2T1(@"C:\Test\zad1.dll");
-            TesterH2T1 tester2 = new TesterH2T1(@"C:\Test\Models.dll");
-            TesterH2T1 tester3 = new TesterH2T1(@"C:\Test\TodoItemLibrary.dll");
+         //   TesterH2T1 tester2 = new TesterH2T1(@"C:\Test\Models.dll");
+         //   TesterH2T1 tester3 = new TesterH2T1(@"C:\Test\TodoItemLibrary.dll");
             
             Assert.IsTrue(tester.RunTest());
-            Assert.IsTrue(tester2.RunTest());
-            Assert.IsTrue(tester3.RunTest());
+         //   Assert.IsTrue(tester2.RunTest());
+         //   Assert.IsTrue(tester3.RunTest());
+            tester = null;
         }
 
        [TestMethod]
