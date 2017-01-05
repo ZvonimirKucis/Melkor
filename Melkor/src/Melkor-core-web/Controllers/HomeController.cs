@@ -77,10 +77,11 @@ namespace Melkor_core_web.Controllers
             
             ViewData["Message"] = "Build complete at " + _location + @"\" + Guid.Parse(currentUser.Id).ToString() + @"\output";
 
+            //string dll = DllHelper.FindDll(_location + @"\" + Guid.Parse(currentUser.Id).ToString() + @"\output");
             // TESTS RUNNING
 
-            TesterH2T1 tester = new TesterH2T1(_location + @"\" + Guid.Parse(currentUser.Id).ToString() + @"\output\zad1.dll");
-            resultBuildItems.Add(item: new BuildItem("Zad1 test", tester.RunTest()));
+            //TesterH2T1 tester = new TesterH2T1((_location + @"\" + Guid.Parse(currentUser.Id).ToString() + @"\output\zad1.dll"));
+            //resultBuildItems.Add(item: new BuildItem("Zad1 test", tester.RunTest()));
             
             //
 
