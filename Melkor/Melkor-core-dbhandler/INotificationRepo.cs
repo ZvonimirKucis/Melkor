@@ -11,5 +11,6 @@ namespace Melkor_core_dbhandler
         void Add(NotificationContext notification);
         bool Remove(Guid notificationId);
         void Edit(Guid notificationId, NotificationContext context);
+        List<NotificationContext> GetContexts(int n);
     }
 }

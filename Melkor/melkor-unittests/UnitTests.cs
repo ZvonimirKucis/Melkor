@@ -69,17 +69,11 @@ namespace melkor_unittests
          //   TesterH2T1 tester2 = new TesterH2T1(@"C:\Test\Models.dll");
          //   TesterH2T1 tester3 = new TesterH2T1(@"C:\Test\TodoItemLibrary.dll");
             
-            Assert.IsTrue(tester.RunTest());
+           // Assert.IsTrue(tester.RunTest());
          //   Assert.IsTrue(tester2.RunTest());
          //   Assert.IsTrue(tester3.RunTest());
             
         }
 
-       [TestMethod]
-        public void TestDllHelper()
-       {
-          string dll = DllHelper.FindDll(@"C:\Test\");
-          Assert.IsTrue(dll.ToLower().Contains("zad1.dll"));
-       }
     }
 }

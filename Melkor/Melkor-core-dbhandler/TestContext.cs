@@ -12,9 +12,11 @@ namespace Melkor_core_dbhandler
         public bool Result { get; set; }
         public DateTime RunDateTime { get; set; }
         public Guid TestId { get; set; }
+        public Guid UserId { get; set; }
 
-        public TestContext(string name, bool result)
+        public TestContext(string name, bool result, Guid userId)
         {
+            UserId = userId;
             Name = name;
             Result = result;
             RunDateTime = DateTime.Now;
