@@ -20,7 +20,6 @@ using Microsoft.Extensions.Configuration;
 
 namespace Melkor_core_web.Controllers
 {
-    
 
     public class HomeController : Controller
     {
@@ -40,6 +39,8 @@ namespace Melkor_core_web.Controllers
 
             return View();
         }
+
+
 
         [Authorize]
         [HttpPost]
@@ -70,27 +71,29 @@ namespace Melkor_core_web.Controllers
             ApplicationUser currentUser = await _userManager.GetUserAsync(HttpContext.User);
             string output = _location + @"\" + Guid.Parse(currentUser.Id).ToString() + @"\output";
             
-            if (!Directory.Exists(target)) throw new DirectoryNotFoundException();
-            Builder builder = new Builder(target);
+            ViewData["Message"] = "Build at " + output;
+            
+            return View();
+        }
 
+        public async Task<ActionResult> BuildResult()
+        {
+            Builder builder = new Builder(_location);
+
+            ApplicationUser currentUser = await _userManager.GetUserAsync(HttpContext.User);
+            string output = _location + @"\" + Guid.Parse(currentUser.Id).ToString() + @"\output";
+            
             var resultBuildItems = builder.Build(output);
-            
-            ViewData["Message"] = "Build complete at " + output;
-            
-            // TESTS RUNNING
 
             TesterH2T1 tester = new TesterH2T1(output);
             foreach (var element in tester.RunTest())
             {
                 resultBuildItems.Add(item: new BuildItem(element.Key, element.Value));
             }
-            
-            
-            //
 
-            return View(resultBuildItems);
+            return PartialView("BuildResultView", resultBuildItems);
         }
-
+        
         public IActionResult Error()
         {
             return View();

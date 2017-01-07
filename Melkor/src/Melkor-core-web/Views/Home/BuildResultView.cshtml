@@ -1,0 +1,6 @@
+﻿@model System.Collections.Generic.List<Melkor_core_builder.BuildItem>
+
+@foreach (var item in Model)
+{
+    Html.RenderPartial("BuildItemPartialView", item);
+}
