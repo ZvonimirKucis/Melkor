@@ -24,5 +24,21 @@ namespace Melkor_core_builder
         public string Name { get; set; }
         public bool Status { get; set; }
         public List<TestContext> Tests { get; set; }
+
+        public bool HasTest()
+        {
+            if (Tests == null) return false;
+            return Tests.Count != 0;
+        }
+
+        public bool GetTestPassStatus()
+        {
+            bool status = true;
+            foreach (var items in Tests)
+            {
+                if (!items.Result) status = false;
+            }
+            return status;
+        }
     }
 }
