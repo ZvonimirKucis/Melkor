@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace Melkor_core_dbhandler
 {
-    public class Db : DbContext
+    public class MelkorDb : DbContext
     {
         public IDbSet<NotificationContext> Notification { get; set; }
+        public IDbSet<TestContext> Tests { get; set; }
 
-        public Db(string connectionString) : base(connectionString)
+        public MelkorDb(string connectionString) : base(connectionString)
         {
             
         }
@@ -24,6 +25,11 @@ namespace Melkor_core_dbhandler
             modelBuilder.Entity<NotificationContext>().Property(n => n.Message);
             modelBuilder.Entity<NotificationContext>().Property(n => n.DateCreated);
             modelBuilder.Entity<NotificationContext>().Property(n => n.PublishedBy);
+
+            modelBuilder.Entity<TestContext>().HasKey(t => t.TestId);
+            modelBuilder.Entity<TestContext>().Property(t => t.Name);
+            modelBuilder.Entity<TestContext>().Property(t => t.RunDateTime);
+            modelBuilder.Entity<TestContext>().Property(t => t.Result);
         }
     }
 }
