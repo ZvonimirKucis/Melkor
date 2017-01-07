@@ -16,11 +16,12 @@ namespace melkor_core_testrun
     {
         private readonly Type _repoType;
         private readonly Type _itemType;
-        private Dictionary<string,bool> results = new Dictionary<string, bool>();
+        private Dictionary<string, bool> results;
 
         public TesterH2T1(string DLLPath)
         {
             DLLPath = DllHelper.FindDll(DLLPath,"TodoRepository");
+            results = new Dictionary<string, bool>();
             using (Stream stream = File.OpenRead(DLLPath))
             {
                 byte[] rawAssmebly = new byte[stream.Length];
