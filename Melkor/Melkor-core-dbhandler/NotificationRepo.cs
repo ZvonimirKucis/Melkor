@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Melkor_core_dbhandler
 {
-    public class NotificationRepo : INotificationContext
+    public class NotificationRepo : INotificationRepo
     {
         private readonly MelkorDb _context;
 

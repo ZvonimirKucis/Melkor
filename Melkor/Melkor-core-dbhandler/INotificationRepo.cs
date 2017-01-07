@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Melkor_core_dbhandler
 {
-    public interface INotificationContext
+    public interface INotificationRepo
     {
         void Add(NotificationContext notification);
         bool Remove(Guid notificationId);
