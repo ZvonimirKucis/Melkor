@@ -43,7 +43,7 @@ namespace melkor_core_testrun
             return results;
         }
         
-        public bool AddingNullToDatabaseThrowsException()
+        private bool AddingNullToDatabaseThrowsException()
         {
             object[] classConstructorArgs = {null};
            
@@ -59,7 +59,7 @@ namespace melkor_core_testrun
             return false;
         }
 
-        public bool AddingItemWillAddToDatabase()
+        private bool AddingItemWillAddToDatabase()
         {
             object[] classConstructorArgs = { null };
             object[] constArgs = { "Test" };
