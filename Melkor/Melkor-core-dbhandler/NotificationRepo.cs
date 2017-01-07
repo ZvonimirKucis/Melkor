@@ -46,5 +46,15 @@ namespace Melkor_core_dbhandler
 
             _context.SaveChanges();
         }
+
+        public List<NotificationContext> GetContexts(int n)
+        {
+            List<NotificationContext> notifications = new List<NotificationContext>(n);
+            var temp = _context.Notification.OrderByDescending(x => x.DateCreated).ToList();
+            for (int i = 0; i < n; i++)
+                notifications[i] = temp[i];
+            return notifications;
+        }
+
     }
 }

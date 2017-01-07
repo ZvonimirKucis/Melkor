@@ -34,5 +34,12 @@ namespace Melkor_core_dbhandler
             temp.RunDateTime = test.RunDateTime;
             _context.SaveChanges();
         }
+
+        public List<TestContext> GetTest(Guid userId)
+        {
+            var temp = _context.Tests.Where(t => t.UserId.Equals(userId)).ToList();
+            if(temp == null) throw new ArgumentNullException();
+            return temp;
+        }
     }
 }

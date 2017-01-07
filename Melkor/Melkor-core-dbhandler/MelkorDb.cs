@@ -30,6 +30,7 @@ namespace Melkor_core_dbhandler
             modelBuilder.Entity<TestContext>().Property(t => t.Name);
             modelBuilder.Entity<TestContext>().Property(t => t.RunDateTime);
             modelBuilder.Entity<TestContext>().Property(t => t.Result);
+            modelBuilder.Entity<TestContext>().Property(t => t.UserId);
         }
     }
 }

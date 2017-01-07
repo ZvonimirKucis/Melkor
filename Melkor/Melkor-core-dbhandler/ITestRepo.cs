@@ -10,5 +10,6 @@ namespace Melkor_core_dbhandler
     {
         void Add(TestContext test);
         void Edit(Guid testId, TestContext test);
+        List<TestContext> GetTest(Guid userId);
     }
 }
