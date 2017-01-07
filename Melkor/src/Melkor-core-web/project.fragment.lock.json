@@ -25,6 +25,27 @@
         }
       }
     },
+    "Melkor-core-dbhandler/1.0.0": {
+      "type": "project",
+      "framework": ".NETFramework,Version=v4.5.2",
+      "compile": {
+        "bin/Debug/Melkor-core-dbhandler.dll": {}
+      },
+      "runtime": {
+        "../packages/EntityFramework.6.1.3/lib/net45/EntityFramework.SqlServer.dll": {},
+        "../packages/EntityFramework.6.1.3/lib/net45/EntityFramework.dll": {},
+        "../packages/EntityFramework.SqlServerCompact.6.1.3/lib/net45/EntityFramework.SqlServerCompact.dll": {},
+        "../packages/Microsoft.SqlServer.Compact.4.0.8876.1/lib/net40/System.Data.SqlServerCe.dll": {},
+        "bin/Debug/Melkor-core-dbhandler.dll": {}
+      },
+      "contentFiles": {
+        "bin/Debug/Melkor-core-dbhandler.pdb": {
+          "buildAction": "None",
+          "codeLanguage": "any",
+          "copyToOutput": true
+        }
+      }
+    },
     "Melkor-core-gitzipper/1.0.0": {
       "type": "project",
       "framework": ".NETFramework,Version=v4.5.2",

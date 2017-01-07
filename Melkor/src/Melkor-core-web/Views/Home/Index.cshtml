@@ -1,34 +1,31 @@
-﻿@model GitLinkModel
+﻿@model List<Melkor_core_dbhandler.NotificationContext>
 @{
     ViewData["Title"] = "Home Page";
 }
 <br/>
-<form class="form" asp-action="GitDownload" Method="post">
-       <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Enter GitHub link</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <input type="text" class="form-control" style="max-width: 100%" asp-for="URL" placeholder="Link">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Start</button>
-                </div>
-
-            </div>
-        </div>
-    </form>
 <br/>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="text-center">
-                <img src="~/images/melkorImage1.png" height="150" width="150"/>
+<div class="panel panel-default" style="padding: 16px">
+    <h2> Updates </h2><br/>
+    @foreach (var item in Model)
+    {
+        <blockquote>
+
+            <p>
+                <b>@item.Title</b>
+            </p>
+            <p style="font-size: 16px">@item.Message</p>
+            <small>Date added @item.DateCreated.ToShortDateString() by @item.PublishedBy</small>
+        </blockquote><br/>
+    }
+</div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="text-center">
+                    <img src="~/images/melkorImage1.png" height="150" width="150" />
+                </div>
             </div>
         </div>
-    </div>
 
-</div>
+    </div>

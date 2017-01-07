@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using melkor_core_testrun;
 using Melkor_core_builder;
+using Melkor_core_dbhandler;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Melkor_core_gitzipper;
@@ -27,17 +28,35 @@ namespace Melkor_core_web.Controllers
         private readonly IHostingEnvironment _environment;
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public HomeController(IHostingEnvironment environment, UserManager<ApplicationUser> userManager, IConfigurationRoot configuration)
+        private ITestRepo testRepo;
+        private INotificationRepo notifyRepo;
+
+        public HomeController(IHostingEnvironment environment, UserManager<ApplicationUser> userManager, IConfigurationRoot configuration,INotificationRepo notificationRepo, ITestRepo testRepo)
         {
             this._environment = environment;
             this._userManager = userManager;
             this._location = configuration.GetSection("Environment")["Storage"];
+            this.testRepo = testRepo;
+            this.notifyRepo = notificationRepo;
         }
 
         public IActionResult Index()
         {
 
-            return View();
+            List<NotificationContext> notifies = new List<NotificationContext>();
+            notifies.Add(
+                new NotificationContext("Title 1",
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                "Admin"));
+            notifies.Add(
+                new NotificationContext("Title 2",
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                "Admin1"));
+            notifies.Add(
+                new NotificationContext("Title 3",
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                "Admin2"));
+            return View(notifies);
         }
 
 

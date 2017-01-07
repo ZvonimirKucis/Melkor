@@ -22,6 +22,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Melkor-core-builder\Melkor-core-builder.csproj" />
+    <ProjectReference Include="..\..\Melkor-core-dbhandler\Melkor-core-dbhandler.csproj" />
     <ProjectReference Include="..\..\Melkor-core-gitzipper\Melkor-core-gitzipper.csproj" />
     <ProjectReference Include="..\..\melkor-core-testrun\melkor-core-testrun.csproj" />
   </ItemGroup>
