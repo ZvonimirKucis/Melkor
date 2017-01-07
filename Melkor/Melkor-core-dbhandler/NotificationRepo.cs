@@ -49,10 +49,11 @@ namespace Melkor_core_dbhandler
 
         public List<NotificationContext> GetContexts(int n)
         {
+            if (n > _context.Notification.ToList().Count) n = _context.Notification.ToList().Count;
             List<NotificationContext> notifications = new List<NotificationContext>(n);
             var temp = _context.Notification.OrderByDescending(x => x.DateCreated).ToList();
             for (int i = 0; i < n; i++)
-                notifications[i] = temp[i];
+                notifications.Add(temp.ElementAt(i));
             return notifications;
         }
 

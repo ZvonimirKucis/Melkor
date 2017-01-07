@@ -1346,7 +1346,7 @@ mark,
 }
 a.text-primary:hover,
 a.text-primary:focus {
-  color: #28415b;
+  color: #db4105;
 }
 .text-success {
   color: #ffffff;
@@ -1382,7 +1382,7 @@ a.text-danger:focus {
 }
 a.bg-primary:hover,
 a.bg-primary:focus {
-  background-color: #28415b;
+  background-color: #db4105;
 }
 .bg-success {
   background-color: #00bc8c;
@@ -3128,19 +3128,19 @@ fieldset[disabled] .btn-default.focus {
 .btn-primary:focus,
 .btn-primary.focus {
   color: #ffffff;
-  background-color: #28415b;
+  background-color: #db4105;
   border-color: #101b26;
 }
 .btn-primary:hover {
   color: #ffffff;
-  background-color: #28415b;
+  background-color: #db4105;
   border-color: #253c54;
 }
 .btn-primary:active,
 .btn-primary.active,
 .open > .dropdown-toggle.btn-primary {
   color: #ffffff;
-  background-color: #28415b;
+  background-color: #db4105;
   border-color: #253c54;
 }
 .btn-primary:active:hover,
@@ -4526,7 +4526,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-default .navbar-nav > .active > a:hover,
 .navbar-default .navbar-nav > .active > a:focus {
   color: #ffffff;
-  background-color: #28415b;
+  background-color: #db4105;
 }
 .navbar-default .navbar-nav > .disabled > a,
 .navbar-default .navbar-nav > .disabled > a:hover,
@@ -4535,11 +4535,11 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   background-color: transparent;
 }
 .navbar-default .navbar-toggle {
-  border-color: #28415b;
+  border-color: #db4105;
 }
 .navbar-default .navbar-toggle:hover,
 .navbar-default .navbar-toggle:focus {
-  background-color: #28415b;
+  background-color: #db4105;
 }
 .navbar-default .navbar-toggle .icon-bar {
   background-color: #ffffff;
@@ -4551,7 +4551,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-default .navbar-nav > .open > a,
 .navbar-default .navbar-nav > .open > a:hover,
 .navbar-default .navbar-nav > .open > a:focus {
-  background-color: #28415b;
+  background-color: #db4105;
   color: #ffffff;
 }
 @media (max-width: 767px) {
@@ -4567,7 +4567,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
   .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
     color: #ffffff;
-    background-color: #28415b;
+    background-color: #db4105;
   }
   .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a,
   .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:hover,
@@ -4886,7 +4886,7 @@ a.label:focus {
 }
 .label-primary[href]:hover,
 .label-primary[href]:focus {
-  background-color: #28415b;
+  background-color: #db4105;
 }
 .label-success {
   background-color: #00bc8c;

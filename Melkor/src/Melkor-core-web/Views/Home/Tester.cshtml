@@ -1,0 +1,35 @@
+﻿@model GitLinkModel
+
+
+<form class="form" asp-action="GitDownload" Method="post">
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Enter GitHub link</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <input type="text" class="form-control" style="max-width: 100%" asp-for="URL" placeholder="Link">
+                </div>
+
+                <div class="form-group">
+                    <label> Choose homework No.</label>
+                    <select class="form-control" asp-for="Zadatak" style="max-width: 25%">
+                        <option>1</option>
+                        <option>2</option>
+                    </select>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" id="testStart">Start</button>
+            </div>
+        </div>
+        <br/>
+        <div id="testProgress" class="progress progress-striped active" style="display: none">
+            <div class="progress-bar" style="width: 100%"></div>
+        </div>
+    </div>
+</form>
+<br/>

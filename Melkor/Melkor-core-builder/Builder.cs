@@ -64,6 +64,7 @@ namespace Melkor_core_builder
                 var globalProperty = new Dictionary<string, string>();
                 
                 globalProperty.Add("OutputPath", savePath);
+                globalProperty.Add("OutputType", "Library"); //compile all as .dll
                 BuildParameters bp;
                 if (debug)
                     bp = new BuildParameters(pc)

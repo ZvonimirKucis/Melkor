@@ -1,4 +1,6 @@
-﻿using Microsoft.Build.Execution;
+﻿using System.Collections.Generic;
+using Melkor_core_dbhandler;
+using Microsoft.Build.Execution;
 
 namespace Melkor_core_builder
 {
@@ -21,5 +23,6 @@ namespace Melkor_core_builder
         public string Dir { get; set; }
         public string Name { get; set; }
         public bool Status { get; set; }
+        public List<TestContext> Tests { get; set; }
     }
 }

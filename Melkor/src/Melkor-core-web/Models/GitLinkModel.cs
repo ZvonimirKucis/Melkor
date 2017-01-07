@@ -8,10 +8,12 @@ namespace Melkor_core_web.Models
     public class GitLinkModel
     {
         public string URL { get; set; }
+        public int Zadatak { get; set; }
 
-        public GitLinkModel(string URL)
+        public GitLinkModel(string url, int zadatak)
         {
-            this.URL = URL;
+            URL = url;
+            Zadatak = zadatak;
         }
 
         public GitLinkModel()

@@ -13,3 +13,7 @@ $(document).ready(function (e) {
         }
     });
 });
+
+$("#testStart").click(function () {
+    $("#testProgress").fadeToggle();
+});

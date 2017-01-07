@@ -69,6 +69,12 @@
     <Compile Include="BuildItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Melkor-core-dbhandler\Melkor-core-dbhandler.csproj">
+      <Project>{11e70a93-aa0c-484a-a5b4-c37cd84bcbc7}</Project>
+      <Name>Melkor-core-dbhandler</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
