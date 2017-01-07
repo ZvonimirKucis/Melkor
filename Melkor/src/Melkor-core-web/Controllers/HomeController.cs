@@ -67,21 +67,24 @@ namespace Melkor_core_web.Controllers
         public async Task<IActionResult> Build()
         {
             string target = _location;
-
             ApplicationUser currentUser = await _userManager.GetUserAsync(HttpContext.User);
-
+            string output = _location + @"\" + Guid.Parse(currentUser.Id).ToString() + @"\output";
+            
             if (!Directory.Exists(target)) throw new DirectoryNotFoundException();
             Builder builder = new Builder(target);
 
-            var resultBuildItems = builder.Build(_location + @"\" + Guid.Parse(currentUser.Id).ToString() + @"\output");
+            var resultBuildItems = builder.Build(output);
             
-            ViewData["Message"] = "Build complete at " + _location + @"\" + Guid.Parse(currentUser.Id).ToString() + @"\output";
-
-            //string dll = DllHelper.FindDll(_location + @"\" + Guid.Parse(currentUser.Id).ToString() + @"\output");
+            ViewData["Message"] = "Build complete at " + output;
+            
             // TESTS RUNNING
 
-            //TesterH2T1 tester = new TesterH2T1((_location + @"\" + Guid.Parse(currentUser.Id).ToString() + @"\output\zad1.dll"));
-            //resultBuildItems.Add(item: new BuildItem("Zad1 test", tester.RunTest()));
+            TesterH2T1 tester = new TesterH2T1(output);
+            foreach (var element in tester.RunTest())
+            {
+                resultBuildItems.Add(item: new BuildItem(element.Key, element.Value));
+            }
+            
             
             //
 

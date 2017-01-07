@@ -22,11 +22,6 @@ namespace Melkor_core_gitzipper
             _userGuid = userGuid;
         }
 
-        ~GitZipper()
-        {
-            Console.WriteLine("DESTT");
-        }
-
         public void GitDownload(string directoryLocation)
         {
             _directoryLocation = $@"{directoryLocation}\{_userGuid}\";

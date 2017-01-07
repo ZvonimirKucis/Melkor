@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Threading;
 using melkor_core_testrun;
 using Melkor_core_builder;
 using Melkor_core_gitzipper;
@@ -71,13 +72,14 @@ namespace melkor_unittests
             Assert.IsTrue(tester.RunTest());
          //   Assert.IsTrue(tester2.RunTest());
          //   Assert.IsTrue(tester3.RunTest());
-            tester = null;
+            
         }
 
        [TestMethod]
-        public void TestTests()
-        {
-            
-        }
+        public void TestDllHelper()
+       {
+          string dll = DllHelper.FindDll(@"C:\Test\");
+          Assert.IsTrue(dll.ToLower().Contains("zad1.dll"));
+       }
     }
 }

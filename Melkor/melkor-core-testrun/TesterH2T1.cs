@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -15,26 +16,30 @@ namespace melkor_core_testrun
     {
         private readonly Type _repoType;
         private readonly Type _itemType;
+        private Dictionary<string,bool> results = new Dictionary<string, bool>();
 
         public TesterH2T1(string DLLPath)
         {
-            var asm = Assembly.LoadFrom(DLLPath);
-            var repoTypeName = asm.GetTypes().Where(x => x.ToString().ToLower().Contains(".todorepository"))
-                .Select(x => x.ToString()).FirstOrDefault();
-            var itemTypeName = asm.GetTypes().Where(x => x.ToString().ToLower().Contains(".todoitem"))
-                .Select(x => x.ToString()).FirstOrDefault();
-            _repoType = asm.GetType(repoTypeName);
-            _itemType = asm.GetType(itemTypeName);
+            DLLPath = DllHelper.FindDll(DLLPath,"TodoRepository");
+            using (Stream stream = File.OpenRead(DLLPath))
+            {
+                byte[] rawAssmebly = new byte[stream.Length];
+                stream.Read(rawAssmebly, 0, (int) stream.Length);
+                var asm = Assembly.Load(rawAssmebly);
+                var repoTypeName = asm.GetTypes().Where(x => x.ToString().ToLower().Contains(".todorepository"))
+                    .Select(x => x.ToString()).FirstOrDefault();
+                var itemTypeName = asm.GetTypes().Where(x => x.ToString().ToLower().Contains(".todoitem"))
+                    .Select(x => x.ToString()).FirstOrDefault();
+                _repoType = asm.GetType(repoTypeName);
+                _itemType = asm.GetType(itemTypeName);
+            }
         }
-
-        ~TesterH2T1()
+        
+        public Dictionary<string,bool> RunTest()
         {
-            System.Console.WriteLine("DESTRUCTED");
-        }
-
-        public bool RunTest()
-        {
-            return AddingNullToDatabaseThrowsException() && AddingItemWillAddToDatabase();
+            results.Add("AddingNullToDatabaseThrowsException",AddingNullToDatabaseThrowsException());
+            results.Add("AddingItemWillAddToDatabase",AddingItemWillAddToDatabase());
+            return results;
         }
         
         public bool AddingNullToDatabaseThrowsException()
