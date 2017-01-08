@@ -94,10 +94,10 @@ namespace Melkor_core_web.Controllers
             
             var resultBuildItems = builder.Build(output);
 
-            TesterH2T1 tester = new TesterH2T1(output);
+            TesterH2T1 tester = new TesterH2T1(output, Guid.Parse(currentUser.Id));
             foreach (var element in tester.RunTest())
             {
-                resultBuildItems.Add(item: new BuildItem(element.Key, element.Value));
+                resultBuildItems.Add(item: new BuildItem(element.Name, element.Result));
             }
 
             return PartialView("BuildResultView", resultBuildItems);

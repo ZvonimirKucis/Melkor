@@ -5,21 +5,23 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Melkor_core_dbhandler;
 
 namespace melkor_core_testrun
 {
     public class TesterH1T1
     {
         private readonly Type _listType;
-        private Dictionary<string, bool> results;
-        private string path;
+        private string _path;
+        private readonly Guid _userGuid;
 
-        public TesterH1T1(string DLLPath)
+        public TesterH1T1(string DLLPath, Guid userGuid)
         {
+            this._userGuid = userGuid;
             DLLPath = DllHelper.FindDll(DLLPath, "IntegerList");
-            path = DLLPath;
+            _path = DLLPath;
             Console.WriteLine(DLLPath);
-            results = new Dictionary<string, bool>();
+
             using (Stream stream = File.OpenRead(DLLPath))
             {
                 byte[] rawAssmebly = new byte[stream.Length];
@@ -30,11 +32,15 @@ namespace melkor_core_testrun
             }
         }
 
-        public Dictionary<string, bool> RunTest()
+        public List<TestContext> RunTest()
         {
-            results.Add("ListContainsAddedElement", ListContainsAddedElement());
-            results.Add("RemovingElementFromList", RemovingElementFromList());
-            return results;
+            var res = new List<TestContext>
+            {
+                new TestContext("ListContainsAddedElement", ListContainsAddedElement(), _userGuid),
+                new TestContext("RemovingElementFromList", RemovingElementFromList(), _userGuid)
+            };
+
+            return res;
         }
 
         private bool ListContainsAddedElement()

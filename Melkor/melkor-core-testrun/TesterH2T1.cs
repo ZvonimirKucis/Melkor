@@ -6,6 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Melkor_core_dbhandler;
 
 namespace melkor_core_testrun
 {
@@ -16,12 +17,13 @@ namespace melkor_core_testrun
     {
         private readonly Type _repoType;
         private readonly Type _itemType;
-        private Dictionary<string, bool> results;
+        private readonly Guid _userGuid;
 
-        public TesterH2T1(string DLLPath)
+        public TesterH2T1(string DLLPath, Guid userGuid)
         {
+            this._userGuid = userGuid;
             DLLPath = DllHelper.FindDll(DLLPath,"TodoRepository");
-            results = new Dictionary<string, bool>();
+
             using (Stream stream = File.OpenRead(DLLPath))
             {
                 byte[] rawAssmebly = new byte[stream.Length];
@@ -36,11 +38,15 @@ namespace melkor_core_testrun
             }
         }
         
-        public Dictionary<string,bool> RunTest()
+        public List<TestContext> RunTest()
         {
-            results.Add("AddingNullToDatabaseThrowsException",AddingNullToDatabaseThrowsException());
-            results.Add("AddingItemWillAddToDatabase",AddingItemWillAddToDatabase());
-            return results;
+            var res = new List<TestContext>
+            {
+                new TestContext("AddingNullToDatabaseThrowsException", AddingNullToDatabaseThrowsException(), _userGuid),
+                new TestContext("AddingItemWillAddToDatabase", AddingItemWillAddToDatabase(), _userGuid)
+            };
+
+            return res;
         }
         
         private bool AddingNullToDatabaseThrowsException()
