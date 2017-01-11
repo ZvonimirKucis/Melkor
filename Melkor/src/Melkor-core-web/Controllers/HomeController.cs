@@ -93,13 +93,16 @@ namespace Melkor_core_web.Controllers
             string output = _location + @"\" + Guid.Parse(currentUser.Id).ToString() + @"\output";
             
             var resultBuildItems = builder.Build(output);
-
+            
             TesterH2T1 tester = new TesterH2T1(output, Guid.Parse(currentUser.Id));
+
             foreach (var element in tester.RunTest())
             {
-                resultBuildItems.Add(item: new BuildItem(element.Name, element.Result));
-            }
+                var buildItem = resultBuildItems.FirstOrDefault(s => s.Dir.Equals(element.Dir));
 
+                buildItem?.Tests.Add(element);
+            }
+            
             return PartialView("BuildResultView", resultBuildItems);
         }
         

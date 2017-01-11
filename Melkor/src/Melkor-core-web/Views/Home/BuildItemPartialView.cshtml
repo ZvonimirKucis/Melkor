@@ -1,24 +1,25 @@
 ﻿@model Melkor_core_builder.BuildItem
+
 <div class="btn-default panel panel-body col-md-12" data-toggle="collapse" data-target="#collapseExample_@Model.GetHashCode()" aria-expanded="false" aria-controls="collapseExample">
-   
+
     @if (Model.HasTest())
     {
-        <div class="col-xs-10">
+        <div class="col-md-10">
             Project name : @Model.Name
         </div>
     }
     else
     {
-        <div class="col-xs-11">
+        <div class="col-md-11">
             Project name : @Model.Name
         </div>
     }
 
     @if (Model.HasTest())
     {
-        <div class="col-xs-1 text-left">
+        <div class="col-md-1 text-left">
             <small>Tests : </small>
-            @if (!Model.GetTestPassStatus())
+            @if (Model.GetTestPassStatus())
             {
                 <span class="fa fa-check"></span>
             }
@@ -29,7 +30,8 @@
         </div>
     }
 
-    <div class="col-xs-1 text-left"><small>Build : </small>
+    <div class="col-md-1 text-left">
+        <small>Build : </small>
         @if (Model.Status)
         {
             <span class="fa fa-check"></span>
@@ -39,15 +41,31 @@
             <span class="fa fa-exclamation"></span>
         }
     </div>
-    
 
 
-    <div class="collapse" id="collapseExample_@Model.GetHashCode()">
-
-        <br /><br/>
-        <div class="card card-block">
-            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+    @if (Model.HasTest())
+    {
+        <div class="collapse" id="collapseExample_@Model.GetHashCode()">
+            
+            <br /><br />
+            
+                @foreach (var test in Model.Tests)
+                {
+                    <div class="col-md-11">
+                        @test.Name
+                    </div>
+                    <div class="col-md-1">
+                        <small>Test : </small>
+                        @if (test.Result)
+                        {
+                            <span class="fa fa-check" aria-hidden="true"></span>
+                        }
+                        else
+                        {
+                            <span class="fa fa-exclamation" aria-hidden="true"></span>
+                        }
+                    </div>
+                }
         </div>
-    </div>
+    }
 </div>
-

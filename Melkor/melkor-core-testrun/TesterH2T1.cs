@@ -18,12 +18,13 @@ namespace melkor_core_testrun
         private readonly Type _repoType;
         private readonly Type _itemType;
         private readonly Guid _userGuid;
+        private string _path;
 
         public TesterH2T1(string DLLPath, Guid userGuid)
         {
             this._userGuid = userGuid;
             DLLPath = DllHelper.FindDll(DLLPath,"TodoRepository");
-
+            _path = DLLPath;
             using (Stream stream = File.OpenRead(DLLPath))
             {
                 byte[] rawAssmebly = new byte[stream.Length];
@@ -42,8 +43,8 @@ namespace melkor_core_testrun
         {
             var res = new List<TestContext>
             {
-                new TestContext("AddingNullToDatabaseThrowsException", AddingNullToDatabaseThrowsException(), _userGuid),
-                new TestContext("AddingItemWillAddToDatabase", AddingItemWillAddToDatabase(), _userGuid)
+                new TestContext("AddingNullToDatabaseThrowsException",_path, AddingNullToDatabaseThrowsException(), _userGuid),
+                new TestContext("AddingItemWillAddToDatabase",_path, AddingItemWillAddToDatabase(), _userGuid)
             };
 
             return res;

@@ -14,9 +14,12 @@ namespace Melkor_core_dbhandler
         public Guid TestId { get; set; }
         public Guid UserId { get; set; }
 
-        public TestContext(string name, bool result, Guid userId)
+        public string Dir { get; set; }
+
+        public TestContext(string name, string dir, bool result, Guid userId)
         {
             UserId = userId;
+            Dir = dir;
             Name = name;
             Result = result;
             RunDateTime = DateTime.Now;

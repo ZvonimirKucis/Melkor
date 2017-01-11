@@ -36,8 +36,8 @@ namespace melkor_core_testrun
         {
             var res = new List<TestContext>
             {
-                new TestContext("ListContainsAddedElement", ListContainsAddedElement(), _userGuid),
-                new TestContext("RemovingElementFromList", RemovingElementFromList(), _userGuid)
+                new TestContext("ListContainsAddedElement",_path, ListContainsAddedElement(), _userGuid),
+                new TestContext("RemovingElementFromList",_path, RemovingElementFromList(), _userGuid)
             };
 
             return res;

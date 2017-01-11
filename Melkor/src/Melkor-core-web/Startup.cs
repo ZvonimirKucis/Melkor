@@ -62,6 +62,12 @@ namespace Melkor_core_web
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
 
+            //Melkor
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("RequireAdministrator", policy => policy.RequireRole("Administrator"));
+            });
+
             services.AddTransient<INotificationRepo, NotificationRepo>();
             services.AddTransient<ITestRepo, TestRepo>();
             services.AddScoped<MelkorDb>((s) => new MelkorDb(Configuration["ConnectionStrings:DefaultConnection"]));

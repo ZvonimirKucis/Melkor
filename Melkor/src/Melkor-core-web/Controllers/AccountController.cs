@@ -36,7 +36,7 @@ namespace Melkor_core_web.Controllers
             _smsSender = smsSender;
             _logger = loggerFactory.CreateLogger<AccountController>();
         }
-
+        
         //
         // GET: /Account/Login
         [HttpGet]
@@ -252,6 +252,7 @@ namespace Melkor_core_web.Controllers
         {
             return View();
         }
+
 
         //
         // POST: /Account/ForgotPassword

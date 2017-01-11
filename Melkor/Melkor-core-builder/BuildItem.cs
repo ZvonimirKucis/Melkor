@@ -23,7 +23,7 @@ namespace Melkor_core_builder
         public string Dir { get; set; }
         public string Name { get; set; }
         public bool Status { get; set; }
-        public List<TestContext> Tests { get; set; }
+        public List<TestContext> Tests = new List<TestContext>();
 
         public bool HasTest()
         {
