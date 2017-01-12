@@ -12,6 +12,10 @@ namespace Melkor_core_dbhandler
         public IDbSet<NotificationContext> Notification { get; set; }
         public IDbSet<TestContext> Tests { get; set; }
 
+        public MelkorDb()
+        {
+        }
+
         public MelkorDb(string connectionString) : base(connectionString)
         {
             

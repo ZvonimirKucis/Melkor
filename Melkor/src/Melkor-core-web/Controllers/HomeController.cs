@@ -46,6 +46,14 @@ namespace Melkor_core_web.Controllers
             return View(notifies);
         }
 
+        public IActionResult AddFakeNews()
+        {
+            notifyRepo.Add(new NotificationContext("Demo title", "Demo tekst demo tekst demo tekst demo tekst demo tekst", "Admin"));
+            return View("Index");
+        }
+
+
+        [Authorize]
         public IActionResult Tester()
         {
             return View();

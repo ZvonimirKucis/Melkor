@@ -1,23 +1,25 @@
 ﻿@model Melkor_core_builder.BuildItem
+<style type="text/css">.details { overflow: hidden;
+    clear: both; }</style>
 
 <div class="btn-default panel panel-body col-md-12" data-toggle="collapse" data-target="#collapseExample_@Model.GetHashCode()" aria-expanded="false" aria-controls="collapseExample">
 
     @if (Model.HasTest())
     {
-        <div class="col-md-10">
+        <div class="col-sm-10 col-xs-6">
             Project name : @Model.Name
         </div>
     }
     else
     {
-        <div class="col-md-11">
+        <div class="col-sm-11 col-xs-9">
             Project name : @Model.Name
         </div>
     }
 
     @if (Model.HasTest())
     {
-        <div class="col-md-1 text-left">
+        <div class="col-sm-1 col-xs-3 text-left">
             <small>Tests : </small>
             @if (Model.GetTestPassStatus())
             {
@@ -30,7 +32,7 @@
         </div>
     }
 
-    <div class="col-md-1 text-left">
+    <div class="col-sm-1 col-xs-3 text-left">
         <small>Build : </small>
         @if (Model.Status)
         {
@@ -45,26 +47,27 @@
 
     @if (Model.HasTest())
     {
-        <div class="collapse" id="collapseExample_@Model.GetHashCode()">
-            
-            <br /><br />
-            
+        <div class="collapse details" id="collapseExample_@Model.GetHashCode()" >
                 @foreach (var test in Model.Tests)
                 {
-                    <div class="col-md-11">
-                        @test.Name
+                    <br/>
+                    <div style="display: block">
+                        <div class="col-sm-11 col-xs-9">
+                            <small>@test.Name</small>
+                        </div>
+                        <div class="col-sm-1 col-xs-3">
+                            <small style="padding: 0;">Test : </small>
+                            @if (test.Result)
+                            {
+                                <span class="fa fa-check" style="padding: 0;" aria-hidden="true"></span>
+                            }
+                            else
+                            {
+                                <span class="fa fa-exclamation" style="padding: 0;" aria-hidden="true"></span>
+                            }
+                        </div>
                     </div>
-                    <div class="col-md-1">
-                        <small>Test : </small>
-                        @if (test.Result)
-                        {
-                            <span class="fa fa-check" aria-hidden="true"></span>
-                        }
-                        else
-                        {
-                            <span class="fa fa-exclamation" aria-hidden="true"></span>
-                        }
-                    </div>
+                    <br/>   
                 }
         </div>
     }

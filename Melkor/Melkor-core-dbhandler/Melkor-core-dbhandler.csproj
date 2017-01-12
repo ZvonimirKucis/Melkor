@@ -60,6 +60,11 @@
     <Compile Include="INotificationRepo.cs" />
     <Compile Include="ITestRepo.cs" />
     <Compile Include="MelkorDb.cs" />
+    <Compile Include="Migrations\201701121113144_mig1.cs" />
+    <Compile Include="Migrations\201701121113144_mig1.Designer.cs">
+      <DependentUpon>201701121113144_mig1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="NotificationContext.cs" />
     <Compile Include="NotificationRepo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -69,6 +74,11 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201701121113144_mig1.resx">
+      <DependentUpon>201701121113144_mig1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
