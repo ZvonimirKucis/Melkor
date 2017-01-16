@@ -65,7 +65,13 @@ namespace Melkor_core_web
             //Melkor
             services.AddAuthorization(options =>
             {
-                options.AddPolicy("RequireAdministrator", policy => policy.RequireRole("Administrator"));
+
+                options.AddPolicy("Administrator",
+                    authBuilder =>
+                    {
+                        authBuilder.RequireRole("Administrator");
+                    });
+
             });
 
             services.AddTransient<INotificationRepo, NotificationRepo>();

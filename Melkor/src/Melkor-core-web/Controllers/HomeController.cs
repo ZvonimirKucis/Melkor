@@ -88,7 +88,7 @@ namespace Melkor_core_web.Controllers
             ApplicationUser currentUser = await _userManager.GetUserAsync(HttpContext.User);
             string output = _location + @"\" + Guid.Parse(currentUser.Id).ToString() + @"\output";
             
-            ViewData["Message"] = "Build at " + output;
+          //  ViewData["Message"] = "Build at " + output;
             
             return View();
         }

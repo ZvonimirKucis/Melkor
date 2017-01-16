@@ -1,0 +1,12 @@
+﻿@model IQueryable<Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<h2>title</h2>
+@foreach (var item in Model)
+{
+    <p>@item.ToString()</p>
+}

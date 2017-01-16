@@ -13,12 +13,12 @@
         <ul class="nav navbar-nav navbar-right">
             <li>
                 <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
-            </li>
-            
-            @if (await AuthorizationService.AuthorizeAsync(User, "RequireAdministrator"))
+            </li> 
+
+            @if (await AuthorizationService.AuthorizeAsync(User, "Administrator"))
             {
                 <li>
-                    <button type="submit" class="btn btn-link navbar-btn navbar-link">Admin button not working yet</button>
+                    <a asp-controller="Admin" asp-action="Index" title="Admin"> Admin</a>
                 </li>
             }
 
