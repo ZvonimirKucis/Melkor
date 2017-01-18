@@ -32,7 +32,7 @@ namespace melkor_unittests
              };*/
             string[] urls =
             {
-                "https://github.com/ZvonimirKucis/1-domaca-zadaca/"
+                "https://github.com/ZvonimirKucis/2-domaca-zadaca/"
             }; 
             GitZipper.CleanUp(downloadLocation);
             foreach (var url in urls)
