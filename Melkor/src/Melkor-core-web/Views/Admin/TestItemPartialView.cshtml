@@ -1,0 +1,22 @@
+﻿@model Melkor_core_dbhandler.TestContext
+
+<div class="panel panel-body" >
+    
+    <div class="">
+        Test name : @Model.Name
+    </div>
+
+        <div class="text-left">
+            <small>Status : </small>
+            @if (Model.Result)
+            {
+                <span class="fa fa-check"></span>
+            }
+            else
+            {
+                <span class="fa fa-exclamation"></span>
+            }
+        </div>
+
+    <div></div>
+</div>

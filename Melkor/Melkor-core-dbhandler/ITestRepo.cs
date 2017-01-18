@@ -11,5 +11,7 @@ namespace Melkor_core_dbhandler
         void Add(TestContext test);
         void Edit(Guid testId, TestContext test);
         List<TestContext> GetTest(Guid userId);
+        List<TestContext> GetAllTests(bool passed);
+        List<TestContext> GetTest(Guid userId, bool v);
     }
 }

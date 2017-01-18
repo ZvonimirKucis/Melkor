@@ -17,3 +17,7 @@ $(document).ready(function (e) {
 $("#testStart").click(function () {
     $("#testProgress").fadeToggle();
 });
+
+$.ajaxPrefilter(function (options, original_Options, jqXHR) {
+    options.async = true;
+});

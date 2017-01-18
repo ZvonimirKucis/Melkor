@@ -1,0 +1,10 @@
+﻿@model System.Collections.Generic.List<System.Collections.Generic.List<Melkor_core_dbhandler.TestContext
+
+@foreach (var item in Model)
+{
+    <p>User : @item.</p>
+    foreach (var item2 in item)
+    {
+     Html.RenderPartial("TestItemPartialView", item2);
+    }
+}

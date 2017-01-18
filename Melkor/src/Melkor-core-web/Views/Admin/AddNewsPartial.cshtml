@@ -1,0 +1,30 @@
+﻿@model Melkor_core_dbhandler.NotificationContext
+
+<form class="form" asp-action="AddNews" Method="post">
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add new notification</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <input type="text" class="form-control" style="max-width: 100%" asp-for="Title" placeholder="Title">
+                </div>
+
+                <div class="form-group">
+                    <textarea type="text" class="form-control" style="max-width: 100%" asp-for="Message" placeholder="Text"></textarea>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" id="testStart">Add</button>
+            </div>
+        </div>
+        <br />
+        <div id="testProgress" class="progress progress-striped active" style="display: none">
+            <div class="progress-bar" style="width: 100%"></div>
+        </div>
+    </div>
+</form>
+<br />

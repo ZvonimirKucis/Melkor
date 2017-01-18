@@ -31,7 +31,7 @@ namespace Melkor_core_web.Controllers
         private ITestRepo testRepo;
         private INotificationRepo notifyRepo;
 
-        public HomeController(IHostingEnvironment environment, UserManager<ApplicationUser> userManager, IConfigurationRoot configuration,INotificationRepo notificationRepo, ITestRepo testRepo)
+        public HomeController(IHostingEnvironment environment, UserManager<ApplicationUser> userManager, IConfigurationRoot configuration, INotificationRepo notificationRepo, ITestRepo testRepo)
         {
             this._environment = environment;
             this._userManager = userManager;
@@ -51,7 +51,6 @@ namespace Melkor_core_web.Controllers
             notifyRepo.Add(new NotificationContext("Demo title", "Demo tekst demo tekst demo tekst demo tekst demo tekst", "Admin"));
             return View("Index");
         }
-
 
         [Authorize]
         public IActionResult Tester()
@@ -104,16 +103,22 @@ namespace Melkor_core_web.Controllers
             
             TestPicker tester = new TestPicker(output, Guid.Parse(currentUser.Id));
             List<TestContext> results = tester.Test();
-            if (results.Count != 0)
+            if (results != null)
             {
-                foreach (var element in tester.Test())
+                foreach (var element in results)
                 {
                     var buildItem = resultBuildItems.FirstOrDefault(s => s.Dir.Equals(element.Dir));
 
                     buildItem?.Tests.Add(element);
                 }
+
+                foreach (var test in results)
+                {
+                    testRepo.Add(new TestContext(test.Name, test.Dir, test.Result, Guid.Parse(currentUser.Id)));
+                }
             }
             
+
             return PartialView("BuildResultView", resultBuildItems);
         }
         

@@ -1,0 +1,11 @@
+﻿@model List<Melkor_core_dbhandler.TestContext>
+<h3>Failed tests</h3>
+@foreach (var item in Model)
+{
+    <div style="max-width: 100%">
+        @{
+            await Html.RenderPartialAsync("TestItemPartialView", item);
+        }
+        
+    </div>
+}

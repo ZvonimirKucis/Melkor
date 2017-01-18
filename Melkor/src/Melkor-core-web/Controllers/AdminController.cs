@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Melkor_core_dbhandler;
 using Melkor_core_web.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -12,16 +13,21 @@ using Microsoft.DotNet.Cli.Utils.CommandParsing;
 
 namespace Melkor_core_web.Controllers
 {
-    [Authorize(Policy  = "MelkorAdmin")]
+    [Authorize]
     public class AdminController : Controller
     {
 
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
-        public AdminController(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager )
+        private ITestRepo testRepo;
+        private INotificationRepo notifyRepo;
+
+        public AdminController(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, INotificationRepo notificationRepo, ITestRepo testRepo)
         {
             _userManager = userManager;
             _roleManager = roleManager;
+            this.notifyRepo = notificationRepo;
+            this.testRepo = testRepo;
         }
 
         public IActionResult Index()
@@ -29,34 +35,44 @@ namespace Melkor_core_web.Controllers
             return View();
         }
 
-
-        [AllowAnonymous]
-        public async Task<IActionResult> AdminI()
+        
+        [HttpPost]
+        public async Task<IActionResult> AddNews(NotificationContext news)
         {
-            ApplicationUser currentUser = await _userManager.GetUserAsync(HttpContext.User);
-            var roles = currentUser.Roles;
-            return View(roles);
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            NotificationContext data = new NotificationContext(news.Title, news.Message, user.UserName);
+            notifyRepo.Add(data);
+            return RedirectToAction("Index");
         }
+        
         [AllowAnonymous]
         public async Task<IActionResult> Setup()
         {
+            var user = await _userManager.GetUserAsync(HttpContext.User);
 
-            ApplicationUser currentUser = await _userManager.GetUserAsync(HttpContext.User);
-
-            var adminRole = await _roleManager.FindByNameAsync("Admin");
+            var adminRole = await _roleManager.FindByNameAsync("Administrator");
             if (adminRole == null)
             {
-                adminRole = new IdentityRole("Admin");
-                await _roleManager.CreateAsync(adminRole);
+                adminRole = new IdentityRole("Administrator");
+                await _roleManager.CreateAsync(new IdentityRole("Administrator"));
             }
 
-            
-            if (!await _userManager.IsInRoleAsync(currentUser, "Admin")){
-                await _userManager.AddToRoleAsync(currentUser, "Admin");
+            if (!await _userManager.IsInRoleAsync(user, "Administrator"))
+            {
+                await _userManager.AddToRoleAsync(user, "Administrator");
             }
 
-            return Ok();
+            return RedirectToAction("Index");
         }
 
+        public IActionResult TestResultsFailed()
+        {
+            return View(testRepo.GetAllTests(false));
+        }
+
+        public IActionResult TestResultsPassed()
+        {
+            return View(testRepo.GetAllTests(true));
+        }
     }
 }

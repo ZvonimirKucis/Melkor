@@ -41,5 +41,19 @@ namespace Melkor_core_dbhandler
             if(temp == null) throw new ArgumentNullException();
             return temp;
         }
+
+        public List<TestContext> GetTest(Guid userId, bool passed)
+        {
+            var temp = _context.Tests.Where(t => t.UserId.Equals(userId)).Where(t => t.Result == passed).ToList();
+            if (temp == null) throw new ArgumentNullException();
+            return temp;
+        }
+
+        public List<TestContext> GetAllTests(bool passed)
+        {
+            var temp = _context.Tests.Where(t => t.Result == passed).ToList();
+            if (temp == null) throw new ArgumentNullException();
+            return temp;
+        }
     }
 }

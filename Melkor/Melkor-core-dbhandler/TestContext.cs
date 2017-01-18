@@ -13,7 +13,7 @@ namespace Melkor_core_dbhandler
         public DateTime RunDateTime { get; set; }
         public Guid TestId { get; set; }
         public Guid UserId { get; set; }
-
+        
         public string Dir { get; set; }
 
         public TestContext(string name, string dir, bool result, Guid userId)
@@ -26,5 +26,8 @@ namespace Melkor_core_dbhandler
             TestId = Guid.NewGuid();
         }
 
+        public TestContext()
+        {
+        }
     }
 }
