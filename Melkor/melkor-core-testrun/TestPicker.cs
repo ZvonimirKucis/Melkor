@@ -43,11 +43,9 @@ namespace melkor_core_testrun
                             {
                                 TesterH1T1 testH1T1 = new TesterH1T1(file,_userId);
                                 results.AddRange(testH1T1.RunTest());
+                                
                             }
-                            else if (type.ToString().ToLower().Contains(".genericlist"))
-                            {
-                                TesterH1T1 testH1T1 = new TesterH1T1(file,_userId);
-                            }
+
                     }
 
                 }

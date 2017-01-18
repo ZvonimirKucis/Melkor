@@ -42,7 +42,6 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TesterH1T1.cs" />
-    <Compile Include="TesterH1T2.cs" />
     <Compile Include="TesterH2T1.cs" />
     <Compile Include="TestPicker.cs" />
   </ItemGroup>

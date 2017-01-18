@@ -74,6 +74,7 @@ namespace melkor_unittests
                 foreach (var test in list)
                 {
                     Console.WriteLine(test.Name);
+                    Console.WriteLine(test.Dir);
                     Assert.IsTrue(test.Result);
                 }
             }
