@@ -102,13 +102,16 @@ namespace Melkor_core_web.Controllers
             
             var resultBuildItems = builder.Build(output);
             
-            TesterH2T1 tester = new TesterH2T1(output, Guid.Parse(currentUser.Id));
-
-            foreach (var element in tester.RunTest())
+            TestPicker tester = new TestPicker(output, Guid.Parse(currentUser.Id));
+            List<TestContext> results = tester.Test();
+            if (results.Count != 0)
             {
-                var buildItem = resultBuildItems.FirstOrDefault(s => s.Dir.Equals(element.Dir));
+                foreach (var element in tester.Test())
+                {
+                    var buildItem = resultBuildItems.FirstOrDefault(s => s.Dir.Equals(element.Dir));
 
-                buildItem?.Tests.Add(element);
+                    buildItem?.Tests.Add(element);
+                }
             }
             
             return PartialView("BuildResultView", resultBuildItems);

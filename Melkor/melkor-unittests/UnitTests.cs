@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 using melkor_core_testrun;
@@ -6,6 +7,7 @@ using Melkor_core_builder;
 using Melkor_core_gitzipper;
 using Microsoft.Build.Execution;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using TestContext = Melkor_core_dbhandler.TestContext;
 
 namespace melkor_unittests
 {
@@ -30,7 +32,7 @@ namespace melkor_unittests
              };*/
             string[] urls =
             {
-                "https://github.com/fspigel/RAUPJC-DZ2/"
+                "https://github.com/ZvonimirKucis/1-domaca-zadaca/"
             }; 
             GitZipper.CleanUp(downloadLocation);
             foreach (var url in urls)
@@ -64,13 +66,18 @@ namespace melkor_unittests
         [TestMethod]
         public void TestRun()
         {
-            /*
-            TesterH1T1 test = new TesterH1T1(@"C:\Users\Zvonimir\Desktop\C#\1. zadaća\1dz\1zad\bin\Debug");
-            TesterH2T1 test2 = new TesterH2T1(@"C:\Test");
-            foreach (var t in test.RunTest())
+            TestPicker picker = new TestPicker(@"C:\Melkor\",Guid.NewGuid());
+            List<TestContext> list = picker.Test();
+            if (list.Count != 0)
             {
-                Assert.IsTrue(t.Value);
-            }*/
+                Console.WriteLine("Testiram zadaću");
+                foreach (var test in list)
+                {
+                    Console.WriteLine(test.Name);
+                    Assert.IsTrue(test.Result);
+                }
+            }
+            
         }
 
     }

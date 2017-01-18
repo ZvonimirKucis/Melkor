@@ -9,13 +9,13 @@ using Melkor_core_dbhandler;
 
 namespace melkor_core_testrun
 {
-    public class TesterH1T1
+    public class TesterH1T2
     {
         private readonly Type _listType;
         private string _path;
         private readonly Guid _userGuid;
 
-        public TesterH1T1(string DLLPath, Guid userGuid)
+        public TesterH1T2(string DLLPath, Guid userGuid)
         {
             this._userGuid = userGuid;
             _path = DLLPath;
@@ -35,7 +35,7 @@ namespace melkor_core_testrun
             var res = new List<TestContext>
             {
                new TestContext("ListContainsAddedElement",_path, ListContainsAddedElement(), _userGuid),
-               new TestContext("RemovingElementFromList",_path, RemovingElementFromList(), _userGuid)
+              // new TestContext("RemovingElementFromList",_path, RemovingElementFromList(), _userGuid)
             };
 
             return res;
@@ -44,7 +44,8 @@ namespace melkor_core_testrun
         private bool ListContainsAddedElement()
         {
             object[] classConstructorArgs = { 4 };
-
+            if(_listType.IsGenericType)
+            return true;
             dynamic listInstance = Activator.CreateInstance(_listType, classConstructorArgs);
             listInstance.Add(19);
             return listInstance.Contains(19);

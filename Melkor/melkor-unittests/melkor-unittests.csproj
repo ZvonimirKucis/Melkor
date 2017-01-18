@@ -62,6 +62,10 @@
       <Project>{ae7eb30b-c3d6-4934-93d6-00a4d780dd7d}</Project>
       <Name>Melkor-core-builder</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Melkor-core-dbhandler\Melkor-core-dbhandler.csproj">
+      <Project>{11e70a93-aa0c-484a-a5b4-c37cd84bcbc7}</Project>
+      <Name>Melkor-core-dbhandler</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Melkor-core-gitzipper\Melkor-core-gitzipper.csproj">
       <Project>{5846d2da-3b34-4414-a7dd-ad985f7008e2}</Project>
       <Name>Melkor-core-gitzipper</Name>

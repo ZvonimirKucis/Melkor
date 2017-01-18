@@ -40,10 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DllHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TesterH1T1.cs" />
+    <Compile Include="TesterH1T2.cs" />
     <Compile Include="TesterH2T1.cs" />
+    <Compile Include="TestPicker.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Melkor-core-dbhandler\Melkor-core-dbhandler.csproj">

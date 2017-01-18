@@ -23,8 +23,8 @@ namespace melkor_core_testrun
         public TesterH2T1(string DLLPath, Guid userGuid)
         {
             this._userGuid = userGuid;
-            DLLPath = DllHelper.FindDll(DLLPath,"TodoRepository");
             _path = DLLPath;
+
             using (Stream stream = File.OpenRead(DLLPath))
             {
                 byte[] rawAssmebly = new byte[stream.Length];
