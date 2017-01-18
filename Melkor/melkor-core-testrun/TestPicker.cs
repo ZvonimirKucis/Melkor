@@ -36,19 +36,17 @@ namespace melkor_core_testrun
                         foreach (var type in assembly.GetTypes())
                             if (type.ToString().ToLower().Contains(".todorepository"))
                             {
-                                TesterH2T1 testH2T1 = new TesterH2T1(file,_userId);
+                                TesterH2T1 testH2T1 = new TesterH2T1(file, _userId);
                                 results.AddRange(testH2T1.RunTest());
-                               return results;
+                                return results;
                             }
                             else if (type.ToString().ToLower().Contains(".integerlist"))
                             {
-                                TesterH1T1 testH1T1 = new TesterH1T1(file,_userId);
+                                TesterH1T1 testH1T1 = new TesterH1T1(file, _userId);
                                 results.AddRange(testH1T1.RunTest());
-                               return results;
+                                return results;
                             }
-
                     }
-
                 }
             }
             return null;

@@ -5,6 +5,7 @@ using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using melkor_core_testrun;
 using Melkor_core_builder;
@@ -101,23 +102,29 @@ namespace Melkor_core_web.Controllers
             
             var resultBuildItems = builder.Build(output);
             
-            TestPicker tester = new TestPicker(output, Guid.Parse(currentUser.Id));
-            List<TestContext> results = tester.Test();
-            if (results != null)
+            var tester = new TestPicker(output, Guid.Parse(currentUser.Id));
+            var results = tester.Test();
+            try
             {
-                foreach (var element in results)
+                if (results != null)
                 {
-                    var buildItem = resultBuildItems.FirstOrDefault(s => s.Dir.Equals(element.Dir));
+                    foreach (var element in results)
+                    {
+                        var buildItem = resultBuildItems.FirstOrDefault(s => s.Dir.Equals(element.Dir));
 
-                    buildItem?.Tests.Add(element);
-                }
+                        buildItem?.Tests.Add(element);
 
-                foreach (var test in results)
-                {
-                    testRepo.Add(new TestContext(test.Name, test.Dir, test.Result, Guid.Parse(currentUser.Id)));
+                        testRepo.Add(new TestContext(element.Name, element.Dir, element.Result,
+                            Guid.Parse(currentUser.Id)));
+                    }
+
                 }
             }
-            
+            catch (Exception ex)
+            {
+                ViewData["Message"] = ex.Message;
+            }
+
 
             return PartialView("BuildResultView", resultBuildItems);
         }
