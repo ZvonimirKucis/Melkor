@@ -12,12 +12,12 @@ using Microsoft.DotNet.Cli.Utils.CommandParsing;
 
 namespace Melkor_core_web.Controllers
 {
-    [Authorize(Roles = "Administrator")]
+    [Authorize(Policy  = "MelkorAdmin")]
     public class AdminController : Controller
     {
 
         private readonly UserManager<ApplicationUser> _userManager;
-        private RoleManager<IdentityRole> _roleManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
         public AdminController(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager )
         {
             _userManager = userManager;
@@ -34,28 +34,25 @@ namespace Melkor_core_web.Controllers
         public async Task<IActionResult> AdminI()
         {
             ApplicationUser currentUser = await _userManager.GetUserAsync(HttpContext.User);
-            var user = await _userManager.FindByIdAsync(currentUser.Id);
-            var roles = _roleManager.Roles;
+            var roles = currentUser.Roles;
             return View(roles);
         }
         [AllowAnonymous]
-        public async Task<IActionResult> Setup() { 
-        
-            ApplicationUser currentUser = await _userManager.GetUserAsync(HttpContext.User);
-            var user = await _userManager.FindByIdAsync(currentUser.Id);
+        public async Task<IActionResult> Setup()
+        {
 
-           
-            var adminRole = await _roleManager.FindByNameAsync("Administrator");
+            ApplicationUser currentUser = await _userManager.GetUserAsync(HttpContext.User);
+
+            var adminRole = await _roleManager.FindByNameAsync("Admin");
             if (adminRole == null)
             {
-                adminRole = new IdentityRole("Administrator");
+                adminRole = new IdentityRole("Admin");
                 await _roleManager.CreateAsync(adminRole);
             }
 
-            if (!await _userManager.IsInRoleAsync(user, adminRole.Name))
-            {
-                await _userManager.AddToRoleAsync(user, adminRole.Name);
-                
+            
+            if (!await _userManager.IsInRoleAsync(currentUser, "Admin")){
+                await _userManager.AddToRoleAsync(currentUser, "Admin");
             }
 
             return Ok();

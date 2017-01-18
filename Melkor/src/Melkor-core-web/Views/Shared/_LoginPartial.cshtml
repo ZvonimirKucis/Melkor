@@ -15,7 +15,7 @@
                 <a asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
             </li> 
 
-            @if (await AuthorizationService.AuthorizeAsync(User, "Administrator"))
+            @if (await AuthorizationService.AuthorizeAsync(User, "MelkorAdmin"))
             {
                 <li>
                     <a asp-controller="Admin" asp-action="Index" title="Admin"> Admin</a>
