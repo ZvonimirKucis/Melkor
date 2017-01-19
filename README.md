@@ -2,7 +2,9 @@
 
 Web aplikacija pomoću koje se može vršiti provjera određenih kodova tj. zadaća. Aplikacija pomoću github link-a skida projekta, kompajlira ga i testira, ako su definirani testovi za taj projekt. 
 
-####Svaka razina je zasebno ostvarena:####
+#### URL: <a href="http://melkor-core.azurewebsites.net">Project link</a>
+
+#### Svaka razina je zasebno ostvarena: ####
 
 _Skidanje projekta:_
 >Aplikacija skida projekt sa git-a. U svrhu preuzimanja koristimo klasu WebClient kojoj predajemo url projekta. Projekt se tada preuzima u .zip formatu. Nakon čega ga raspakiravamo u zasebnu datoteku za svakog korisnika(root_datoteka\guid_korisnika).
@@ -30,3 +32,16 @@ _Build:_
 _Admin:_
 >Admin ima mogućnost dodavanja novih obavijesti na stranicu, unosom naslova i teksta obavijseti. Ta obavijest se tada sprema u bazu obavijesti. Također se prikazuju adminu dva stupca testova, jedan stupac testovi koji su prošli, a drugi koji nisu prošli. Za sad još nije implementirano da prikazuje koji korisnik je pokrenuo koji test, nego ih samo prikazuje. To će biti dodano u bližoj budućnosti. 
 ![Alt text](/Screenshots/admin%20screen.png)
+
+### Podjela zadatka:###
+
+* Alen Štruklec
+ * Izrada kompletnog dizajna
+ * Modul za kompajliranje skinutog git projekta
+  
+* Zvonimir Kučiš
+ * Modul za skidanje git projekta
+ * Modul za testiranje zadataka
+  
+* ZajedničKi rad
+ * Baza podataka
