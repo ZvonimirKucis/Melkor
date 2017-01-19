@@ -2,13 +2,33 @@
 @using Melkor_core_web.Controllers
 @model List<Melkor_core_web.Controllers.UserTests>
 
-<h3>Tests</h3>
-@foreach (var item in Model)
-{
-    @item.User
-    <br/>
-    foreach (var tests in item.Tests)
-    { 
-    Html.RenderPartial("TestItemPartialView", tests);
-}
-}
+<style type="text/css">
+    .details {
+        overflow: hidden;
+        clear: both;
+    }
+</style>
+
+
+<h3>Runned tests</h3>
+<div class="container-fluid col-md-12 divider">
+    @foreach (var item in Model)
+    {
+        <div class="row btn btn-default col-md-12" style="margin-top: 8px" data-toggle="collapse" data-target="#collapseExample_@item.User.GetHashCode()" aria-expanded="false" aria-controls="collapseExample">
+
+            <p style="margin-top: 8px" >Tests for user : @item.User</p>
+            <div class="collapse details" id="collapseExample_@item.User.GetHashCode()">
+                @foreach (var tests in item.Tests)
+                {
+                    <div style="display: block">
+                        <div class="col-xs-0 col-sm-6 col-md-4">
+                            @{
+                                Html.RenderPartial("TestItemPartialView", tests);
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+                                }
+</div>

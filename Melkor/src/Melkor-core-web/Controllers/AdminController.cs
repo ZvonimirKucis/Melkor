@@ -36,7 +36,7 @@ namespace Melkor_core_web.Controllers
             return View();
         }
 
-        [AllowAnonymous]
+        //not accessible, used for testing only
         public async Task<IActionResult> Admini()
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
@@ -53,7 +53,7 @@ namespace Melkor_core_web.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        [AllowAnonymous]
+        //not accessible, used for testing only
         public async Task<IActionResult> Setup()
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
