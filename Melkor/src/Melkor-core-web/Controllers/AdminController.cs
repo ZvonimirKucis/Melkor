@@ -22,7 +22,8 @@ namespace Melkor_core_web.Controllers
         private ITestRepo testRepo;
         private INotificationRepo notifyRepo;
 
-        public AdminController(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, INotificationRepo notificationRepo, ITestRepo testRepo)
+        public AdminController(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager,
+            INotificationRepo notificationRepo, ITestRepo testRepo)
         {
             _userManager = userManager;
             _roleManager = roleManager;
@@ -35,7 +36,7 @@ namespace Melkor_core_web.Controllers
             return View();
         }
 
-            [AllowAnonymous]
+        [AllowAnonymous]
         public async Task<IActionResult> Admini()
         {
             var user = await _userManager.GetUserAsync(HttpContext.User);
@@ -49,10 +50,8 @@ namespace Melkor_core_web.Controllers
             var user = await _userManager.GetUserAsync(HttpContext.User);
             NotificationContext data = new NotificationContext(news.Title, news.Message, user.UserName);
             notifyRepo.Add(data);
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Home");
         }
-
-        
 
         [AllowAnonymous]
         public async Task<IActionResult> Setup()
@@ -71,10 +70,20 @@ namespace Melkor_core_web.Controllers
                 await _userManager.AddToRoleAsync(user, "Administrator");
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Home");
         }
 
-        public IActionResult TestResultsFailed()
+        public IActionResult TestResults()
+        {
+            var tests = new List<TestContext>();
+
+            tests.AddRange(testRepo.GetAllTests(true));
+            tests.AddRange(testRepo.GetAllTests(false));
+
+            return PartialView("TestResults", tests);
+        }
+
+    public IActionResult TestResultsFailed()
         {
             return View(testRepo.GetAllTests(false));
         }
@@ -82,6 +91,18 @@ namespace Melkor_core_web.Controllers
         public IActionResult TestResultsPassed()
         {
             return View(testRepo.GetAllTests(true));
+        }
+    }
+
+    public class UserTests
+    {
+        public String User;
+        public List<TestContext> Tests;
+
+        public UserTests(String User, List<TestContext> list)
+        {
+            this.User = User;
+            this.Tests = list;
         }
     }
 }

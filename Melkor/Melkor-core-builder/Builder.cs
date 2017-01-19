@@ -94,7 +94,7 @@ namespace Melkor_core_builder
             {
                 Console.WriteLine("Build Failed: " + e);
             }
-            return new BuildItem("BUILD FAILED ON ITEM", path, false);
+            return new BuildItem("Item name could not be resolved", path, false);
         }
 
         public string[] FindProjectFile(string path)
