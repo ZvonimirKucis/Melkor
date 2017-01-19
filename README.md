@@ -10,7 +10,7 @@ _Skidanje projekta:_
 >Aplikacija skida projekt sa git-a. U svrhu preuzimanja koristimo klasu WebClient kojoj predajemo url projekta. Projekt se tada preuzima u .zip formatu. Nakon čega ga raspakiravamo u zasebnu datoteku za svakog korisnika(root_datoteka\guid_korisnika).
 
 _Kompajliranje(build):_
->Kompajliranje se vrši nakon skidanja. Pronalaze se sve .cs datoteke unutar skinutog git repozitorija te pokretanjem BuildManegera implementiranog u .NET frameworku pokreće se kompajliranje. Cijeli proces se ostvaruje u do 8 dinamckih node-a koji tada paraleno kompajliraju .cs datoteke.
+>Kompajliranje se vrši nakon skidanja. Pronalaze se sve .csproj datoteke unutar skinutog git repozitorija te pokretanjem BuildManegera implementiranog u .NET frameworku pokreće se kompajliranje. Cijeli proces se ostvaruje u do 8 dinamckih node-a koji tada paraleno kompajliraju .csproj datoteke.
 
 _Testiranje:_
 >Testiranje je definirano samo za neke projekte. U trenutnoj fazi aplikacije, testiraju se samo .dll datotetke. Kod testiranja prvo se pokreće klasa TestPicker kojom se odabiru definirani testovi za taj projekt. Ta klasa tada instancira nove klase ovisno o zadaći(TesterH2T1, testira zadaću(homework) 2 i zadatak(task) 1). U tim klasama se učitava assembly .dll datoteka iz zadaće, te se nad njima provode testovi. U samoj metodi testa se stvaraju nove instance klasa definiranih u učitanim .dll datotekama, te se pozivaju metode definirane unutar njih. Pozivanjem metoda se također utvrđuje njihov ispravan rad. Prolazak testa se kasnji prikazuje na web stranici(više o tome u nastavku).
