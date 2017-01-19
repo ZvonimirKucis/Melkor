@@ -25,6 +25,9 @@ _Start test:_
 >Stranica služi za unos github url-a, na njoj se nalazi jednostavna forma pomoću koje se vrši unos. Pritiskom na gumb "Start" pokreće se skidanje projekta, te se dogodi prijelaz na sljedeću stranicu(Build).Za pristup stranici korisnik mora biti prijavljen.
 ![Alt text](/Screenshots/test%20screen.png?raw=true)
 
+#### VAŽNA NAPOMENA: ####
+Testovi su definirani za sve druge zadaće na kolegiju "Razvoj aplikacija u programskom jezik C#", dok za prvu zadaću rade testovi samo na sljedećoj zadaći: https://github.com/ZvonimirKucis/1-domaca-zadaca . U kojoj se IntegerList nalazi unutar Lists.dll, dok je kod ostalih u sklopu prvog .exe zadatka. 
+
 _Build:_
 >Na njoj se prikazuju zadaci koji su bili kompajlirani unutar projekta. Klikom na zadatak za koji su definirani testovi(pored oznake Build ima također oznaku Tests),prikazuju se koji su prošli a koji nisu. Sam proces kompajliranja i testiranja se vrši u pozadini te stranice.
 ![Alt text](/Screenshots/build%20screen.png?raw=true)
