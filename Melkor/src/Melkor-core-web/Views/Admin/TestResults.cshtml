@@ -1,7 +1,14 @@
-﻿@model List<Melkor_core_dbhandler.TestContext>
+﻿@using System.Threading.Tasks
+@using Melkor_core_web.Controllers
+@model List<Melkor_core_web.Controllers.UserTests>
 
 <h3>Tests</h3>
 @foreach (var item in Model)
 {
-    Html.RenderPartial("TestItemPartialView", item);
+    @item.User
+    <br/>
+    foreach (var tests in item.Tests)
+    { 
+    Html.RenderPartial("TestItemPartialView", tests);
+}
 }

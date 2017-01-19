@@ -75,10 +75,12 @@ namespace Melkor_core_web.Controllers
 
         public IActionResult TestResults()
         {
-            var tests = new List<TestContext>();
+            var tests = new List<UserTests>();
 
-            tests.AddRange(testRepo.GetAllTests(true));
-            tests.AddRange(testRepo.GetAllTests(false));
+            foreach (var user in _userManager.Users)
+            {
+                tests.Add(new UserTests(user.UserName, testRepo.GetTest(Guid.Parse(user.Id))));
+            }
 
             return PartialView("TestResults", tests);
         }
