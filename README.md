@@ -1,7 +1,10 @@
 # Melkor
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> cd64bd4386f9f7dc27130ff2f25b9ad1bc25cd6e
 Web aplikacija pomoću koje se može vršiti provjera određenih kodova tj. zadaća. Aplikacija pomoću github link-a skida projekta, kompajlira ga i testira, ako su definirani testovi za taj projekt. 
 
 #### URL: <a href="http://melkor-core.azurewebsites.net">Project link</a>
@@ -47,4 +50,7 @@ _Admin:_
   
 * ZajedničKi rad
  * Baza podataka
+<<<<<<< HEAD
+>>>>>>> cd64bd4386f9f7dc27130ff2f25b9ad1bc25cd6e
+=======
 >>>>>>> cd64bd4386f9f7dc27130ff2f25b9ad1bc25cd6e
