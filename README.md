@@ -1,10 +1,5 @@
 # Melkor
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> cd64bd4386f9f7dc27130ff2f25b9ad1bc25cd6e
 Web aplikacija pomoću koje se može vršiti provjera određenih kodova tj. zadaća. Aplikacija pomoću github link-a skida projekta, kompajlira ga i testira, ako su definirani testovi za taj projekt. 
 
 #### URL: <a href="http://melkor-core.azurewebsites.net">Project link</a>
@@ -15,7 +10,7 @@ _Skidanje projekta:_
 >Aplikacija skida projekt sa git-a. U svrhu preuzimanja koristimo klasu WebClient kojoj predajemo url projekta. Projekt se tada preuzima u .zip formatu. Nakon čega ga raspakiravamo u zasebnu datoteku za svakog korisnika(root_datoteka\guid_korisnika).
 
 _Kompajliranje(build):_
->Nakon skidanja prolazi se kroz sve datoteke, te se svaki projekt zasebno kompajlira. Kompajliranje se vrši uz pomoć .NET framework-a...
+>Kompajliranje se vrši nakon skidanja. Pronalaze se sve .cs datoteke unutar skinutog git repozitorija te pokretanjem BuildManegera implementiranog u .NET frameworku pokreće se kompajliranje. Cijeli proces se ostvaruje u do 8 dinamckih node-a koji tada paraleno kompajliraju .cs datoteke.
 
 _Testiranje:_
 >Testiranje je definirano samo za neke projekte. U trenutnoj fazi aplikacije, testiraju se samo .dll datotetke. Kod testiranja prvo se pokreće klasa TestPicker kojom se odabiru definirani testovi za taj projekt. Ta klasa tada instancira nove klase ovisno o zadaći(TesterH2T1, testira zadaću(homework) 2 i zadatak(task) 1). U tim klasama se učitava assembly .dll datoteka iz zadaće, te se nad njima provode testovi. U samoj metodi testa se stvaraju nove instance klasa definiranih u učitanim .dll datotekama, te se pozivaju metode definirane unutar njih. Pozivanjem metoda se također utvrđuje njihov ispravan rad. Prolazak testa se kasnji prikazuje na web stranici(više o tome u nastavku).
@@ -35,8 +30,10 @@ _Build:_
 ![Alt text](/Screenshots/build%20screen.png?raw=true)
 
 _Admin:_
->Admin ima mogućnost dodavanja novih obavijesti na stranicu, unosom naslova i teksta obavijseti. Ta obavijest se tada sprema u bazu obavijesti. Također se prikazuju adminu dva stupca testova, jedan stupac testovi koji su prošli, a drugi koji nisu prošli. Za sad još nije implementirano da prikazuje koji korisnik je pokrenuo koji test, nego ih samo prikazuje. To će biti dodano u bližoj budućnosti. 
+>Admin ima mogućnost dodavanja novih obavijesti na stranicu, unosom naslova i teksta obavijseti. Ta obavijest se tada sprema u bazu obavijesti. 
 ![Alt text](/Screenshots/admin%20screen.png)
+Također se niže prikazuju korisnički testovi. Klikom na pojedinog korisnika može se vidjeti detaljniji prikaz njegovih testova koji su prošli, a koji nisu.
+![Alt text](/Screenshots/admin2.png)
 
 ### Podjela zadatka:###
 
@@ -48,9 +45,6 @@ _Admin:_
  * Modul za skidanje git projekta
  * Modul za testiranje zadataka
   
-* ZajedničKi rad
+* Zajednički rad
  * Baza podataka
-<<<<<<< HEAD
->>>>>>> cd64bd4386f9f7dc27130ff2f25b9ad1bc25cd6e
-=======
->>>>>>> cd64bd4386f9f7dc27130ff2f25b9ad1bc25cd6e
+
