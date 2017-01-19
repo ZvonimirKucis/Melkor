@@ -3,7 +3,7 @@
 @foreach (var item in Model)
 {
 
-    <div style="max-width: 100%">
+    <div style="max-width: 40%">
         @{
             await Html.RenderPartialAsync("TestItemPartialView", item);
         }

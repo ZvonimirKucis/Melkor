@@ -13,7 +13,7 @@ using Microsoft.DotNet.Cli.Utils.CommandParsing;
 
 namespace Melkor_core_web.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Administrator")]
     public class AdminController : Controller
     {
 
@@ -35,7 +35,14 @@ namespace Melkor_core_web.Controllers
             return View();
         }
 
-        
+            [AllowAnonymous]
+        public async Task<IActionResult> Admini()
+        {
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            var result = await _userManager.GetRolesAsync(user);
+            return Json(result);
+        }
+
         [HttpPost]
         public async Task<IActionResult> AddNews(NotificationContext news)
         {
@@ -44,7 +51,9 @@ namespace Melkor_core_web.Controllers
             notifyRepo.Add(data);
             return RedirectToAction("Index");
         }
+
         
+
         [AllowAnonymous]
         public async Task<IActionResult> Setup()
         {

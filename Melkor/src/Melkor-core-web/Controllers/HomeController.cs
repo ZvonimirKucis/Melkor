@@ -122,7 +122,7 @@ namespace Melkor_core_web.Controllers
             }
             catch (Exception ex)
             {
-                ViewData["Message"] = ex.Message;
+                ViewData["Message"] = "ERROR " + ex.Message + "  " + ex.InnerException;
             }
 
 
