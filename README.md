@@ -4,6 +4,10 @@ Web aplikacija pomoću koje se može vršiti provjera određenih kodova tj. zada
 
 #### URL: <a href="http://melkor-core.azurewebsites.net">Project link</a>
 
+* Projekt su izrađivali:
+ * Alen Štruklec (0036493116)
+ * Zvonimir Kučiš (0036494839)
+
 #### Svaka razina je zasebno ostvarena: ####
 
 _Skidanje projekta:_
@@ -37,6 +41,10 @@ _Admin:_
 ![Alt text](/Screenshots/admin%20screen.png)
 Također se niže prikazuju korisnički testovi. Klikom na pojedinog korisnika može se vidjeti detaljniji prikaz njegovih testova koji su prošli, a koji nisu.
 ![Alt text](/Screenshots/admin2.png)
+
+#### Admin: ####
+Korisničko ime: admin@melkor.com
+Lozinka: C00k1e!
 
 ### Podjela zadatka:###
 
