@@ -43,7 +43,7 @@ Također se niže prikazuju korisnički testovi. Klikom na pojedinog korisnika m
 ![Alt text](/Screenshots/admin2.png)
 
 #### Admin: ####
-Korisničko ime: admin@melkor.com
+Korisničko ime: admin@melkor.com<br/>
 Lozinka: C00k1e!
 
 ### Podjela zadatka:###
